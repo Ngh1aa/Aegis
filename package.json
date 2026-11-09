@@ -1,0 +1,46 @@
+{
+  "name": "aegis",
+  "version": "1.0.0",
+  "description": "Aegis fraud and risk operations prototype",
+  "scripts": {
+    "test": "playwright test",
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ngh1aa/Aegis.git"
+  },
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/Ngh1aa/Aegis/issues"
+  },
+  "homepage": "https://github.com/Ngh1aa/Aegis#readme",
+  "dependencies": {
+    "@fontsource-variable/ibm-plex-sans": "^5.3.0",
+    "@tabler/icons-react": "^3.51.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "react-router-dom": "^7.18.5"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.14.0",
+    "@eslint/js": "^10.0.1",
+    "@playwright/test": "^1.65.0",
+    "@types/node": "^26.6.6",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "eslint": "^10.14.0",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.72.1",
+    "vite": "^8.3.6"
+  },
+  "private": true,
+  "overrides": {
+    "minimatch": "^11.0.5"
+  }
+}
