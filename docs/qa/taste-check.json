@@ -1,0 +1,616 @@
+{
+  "errorCount": 0,
+  "warningCount": 86,
+  "axe": "RUN",
+  "results": [
+    {
+      "page": "http://127.0.0.1:4181/#/",
+      "width": 390,
+      "theme": "light",
+      "reflow": false,
+      "screens": [
+        {
+          "name": "Aegis | Risk Operations",
+          "errors": [],
+          "warnings": [
+            {
+              "rule": "edge",
+              "message": "Chữ cách mép màn 0px (nên ≥ 16px): th \"Investigation\""
+            },
+            {
+              "rule": "wrap-review",
+              "message": "Nội dung ngắn xuống dòng; kiểm tra chủ đích theo brief: span.identity-merchant \"Northline Electronics\""
+            },
+            {
+              "rule": "edge",
+              "message": "Chữ cách mép màn 0px (nên ≥ 16px): span.badge \"Open\""
+            },
+            {
+              "rule": "edge",
+              "message": "Chữ cách mép màn 0px (nên ≥ 16px): span.badge \"In review\""
+            },
+            {
+              "rule": "edge",
+              "message": "Chữ cách mép màn 0px (nên ≥ 16px): span.badge \"Escalated\""
+            },
+            {
+              "rule": "colors",
+              "message": "5 nhóm màu trong một màn (nên ≤ 3): #364f2f ở span.avatar \"MC\"; #922c22 ở svg; #f8edd3 ở span.priority-icon; #315573 ở span.badge \"In review\"; #654578 ở span.badge \"Escalated\""
+            },
+            {
+              "rule": "tile-rainbow",
+              "message": "8 ô cùng loại tô 3 màu khác nhau (#fae9e3, #e6eff6, #f0e9f4): span.badge \"Critical\". Dùng một màu nền chung; màu chỉ để báo trạng thái"
+            }
+          ]
+        },
+        {
+          "name": "axe-core",
+          "errors": [],
+          "warnings": []
+        }
+      ]
+    },
+    {
+      "page": "http://127.0.0.1:4181/#/",
+      "width": 390,
+      "theme": "dark",
+      "reflow": false,
+      "screens": [
+        {
+          "name": "Aegis | Risk Operations",
+          "errors": [],
+          "warnings": [
+            {
+              "rule": "edge",
+              "message": "Chữ cách mép màn 0px (nên ≥ 16px): th \"Investigation\""
+            },
+            {
+              "rule": "wrap-review",
+              "message": "Nội dung ngắn xuống dòng; kiểm tra chủ đích theo brief: span.identity-merchant \"Northline Electronics\""
+            },
+            {
+              "rule": "edge",
+              "message": "Chữ cách mép màn 0px (nên ≥ 16px): span.badge \"Open\""
+            },
+            {
+              "rule": "edge",
+              "message": "Chữ cách mép màn 0px (nên ≥ 16px): span.badge \"In review\""
+            },
+            {
+              "rule": "edge",
+              "message": "Chữ cách mép màn 0px (nên ≥ 16px): span.badge \"Escalated\""
+            },
+            {
+              "rule": "colors",
+              "message": "5 nhóm màu trong một màn (nên ≤ 3): #cee2c0 ở span.avatar \"MC\"; #492924 ở span.priority-icon; #473620 ở span.priority-icon; #bddcf2 ở span.badge \"In review\"; #e6c9f4 ở span.badge \"Escalated\""
+            }
+          ]
+        },
+        {
+          "name": "axe-core",
+          "errors": [],
+          "warnings": []
+        }
+      ]
+    },
+    {
+      "page": "http://127.0.0.1:4181/#/",
+      "width": 1280,
+      "theme": "light",
+      "reflow": false,
+      "screens": [
+        {
+          "name": "Aegis | Risk Operations",
+          "errors": [],
+          "warnings": [
+            {
+              "rule": "radius",
+              "message": "Card có 2 bán kính bo góc khác nhau: 0px (header.topbar \"Risk operations AegisMCMaya ChenFraud An\"); 8px (section.panel \"Recent flagged transactionsView transact\")"
+            },
+            {
+              "rule": "colors",
+              "message": "5 nhóm màu trong một màn (nên ≤ 3): #364f2f ở a.nav-item \"Overview\"; #922c22 ở svg; #f8edd3 ở span.priority-icon; #315573 ở span.badge \"In review\"; #654578 ở span.badge \"Escalated\""
+            },
+            {
+              "rule": "tile-rainbow",
+              "message": "8 ô cùng loại tô 3 màu khác nhau (#fae9e3, #e6eff6, #f0e9f4): span.badge \"Critical\". Dùng một màu nền chung; màu chỉ để báo trạng thái"
+            }
+          ]
+        },
+        {
+          "name": "axe-core",
+          "errors": [],
+          "warnings": []
+        }
+      ]
+    },
+    {
+      "page": "http://127.0.0.1:4181/#/",
+      "width": 1280,
+      "theme": "dark",
+      "reflow": false,
+      "screens": [
+        {
+          "name": "Aegis | Risk Operations",
+          "errors": [],
+          "warnings": [
+            {
+              "rule": "radius",
+              "message": "Card có 2 bán kính bo góc khác nhau: 0px (header.topbar \"Risk operations AegisMCMaya ChenFraud An\"); 8px (section.panel \"Recent flagged transactionsView transact\")"
+            },
+            {
+              "rule": "colors",
+              "message": "5 nhóm màu trong một màn (nên ≤ 3): #cee2c0 ở a.nav-item \"Overview\"; #492924 ở span.priority-icon; #473620 ở span.priority-icon; #bddcf2 ở span.badge \"In review\"; #e6c9f4 ở span.badge \"Escalated\""
+            }
+          ]
+        },
+        {
+          "name": "axe-core",
+          "errors": [],
+          "warnings": []
+        }
+      ]
+    },
+    {
+      "page": "http://127.0.0.1:4181/#/",
+      "width": 320,
+      "theme": "light",
+      "reflow": true,
+      "screens": [
+        {
+          "name": "Aegis | Risk Operations (reflow 320 px)",
+          "errors": [],
+          "warnings": []
+        }
+      ]
+    },
+    {
+      "page": "http://127.0.0.1:4181/#/transactions",
+      "width": 390,
+      "theme": "light",
+      "reflow": false,
+      "screens": [
+        {
+          "name": "Aegis | Risk Operations",
+          "errors": [],
+          "warnings": [
+            {
+              "rule": "edge",
+              "message": "Chữ cách mép màn 0px (nên ≥ 16px): th \"Origin\""
+            },
+            {
+              "rule": "edge",
+              "message": "Chữ cách mép màn 0px (nên ≥ 16px): th \"Payment\""
+            },
+            {
+              "rule": "edge",
+              "message": "Chữ cách mép màn 0px (nên ≥ 16px): th \"Investigation\""
+            },
+            {
+              "rule": "edge",
+              "message": "Chữ cách mép màn 0px (nên ≥ 16px): th \"Received\""
+            },
+            {
+              "rule": "wrap-review",
+              "message": "Nội dung ngắn xuống dòng; kiểm tra chủ đích theo brief: span.identity-merchant \"Northline Electronics\""
+            },
+            {
+              "rule": "edge",
+              "message": "Chữ cách mép màn 0px (nên ≥ 16px): td \"Austin, US\""
+            },
+            {
+              "rule": "edge",
+              "message": "Chữ cách mép màn 0px (nên ≥ 16px): span.badge \"Held\""
+            },
+            {
+              "rule": "edge",
+              "message": "Chữ cách mép màn 0px (nên ≥ 16px): span.badge \"Open\""
+            },
+            {
+              "rule": "edge",
+              "message": "Chữ cách mép màn 0px (nên ≥ 16px): time \"9 Nov, 13:42 UTC\""
+            },
+            {
+              "rule": "edge",
+              "message": "Chữ cách mép màn 0px (nên ≥ 16px): td \"London, UK\""
+            },
+            {
+              "rule": "edge",
+              "message": "Chữ cách mép màn 0px (nên ≥ 16px): span.badge \"Authorized\""
+            },
+            {
+              "rule": "edge",
+              "message": "Chữ cách mép màn 0px (nên ≥ 16px): span.badge \"In review\""
+            },
+            {
+              "rule": "edge",
+              "message": "Chữ cách mép màn 0px (nên ≥ 16px): time \"9 Nov, 12:39 UTC\""
+            },
+            {
+              "rule": "edge",
+              "message": "Chữ cách mép màn 0px (nên ≥ 16px): td \"Amsterdam, NL\""
+            },
+            {
+              "rule": "edge",
+              "message": "Chữ cách mép màn 0px (nên ≥ 16px): time \"9 Nov, 11:36 UTC\""
+            },
+            {
+              "rule": "edge",
+              "message": "Chữ cách mép màn 0px (nên ≥ 16px): td \"Portland, US\""
+            },
+            {
+              "rule": "edge",
+              "message": "Chữ cách mép màn 0px (nên ≥ 16px): span.badge \"Settled\""
+            },
+            {
+              "rule": "edge",
+              "message": "Chữ cách mép màn 0px (nên ≥ 16px): time \"9 Nov, 10:33 UTC\""
+            },
+            {
+              "rule": "edge",
+              "message": "Chữ cách mép màn 0px (nên ≥ 16px): td \"Berlin, DE\""
+            },
+            {
+              "rule": "edge",
+              "message": "Chữ cách mép màn 0px (nên ≥ 16px): time \"9 Nov, 09:30 UTC\""
+            },
+            {
+              "rule": "edge",
+              "message": "Chữ cách mép màn 0px (nên ≥ 16px): td \"Bristol, UK\""
+            },
+            {
+              "rule": "edge",
+              "message": "Chữ cách mép màn 0px (nên ≥ 16px): span.badge \"Declined\""
+            },
+            {
+              "rule": "edge",
+              "message": "Chữ cách mép màn 0px (nên ≥ 16px): span.badge \"No case\""
+            },
+            {
+              "rule": "edge",
+              "message": "Chữ cách mép màn 0px (nên ≥ 16px): time \"9 Nov, 08:27 UTC\""
+            },
+            {
+              "rule": "edge",
+              "message": "Chữ cách mép màn 0px (nên ≥ 16px): td \"Lyon, FR\""
+            },
+            {
+              "rule": "edge",
+              "message": "Chữ cách mép màn 0px (nên ≥ 16px): span.badge \"Escalated\""
+            },
+            {
+              "rule": "edge",
+              "message": "Chữ cách mép màn 0px (nên ≥ 16px): time \"9 Nov, 07:24 UTC\""
+            },
+            {
+              "rule": "edge",
+              "message": "Chữ cách mép màn 0px (nên ≥ 16px): td \"Boulder, US\""
+            },
+            {
+              "rule": "edge",
+              "message": "Chữ cách mép màn 0px (nên ≥ 16px): time \"9 Nov, 06:21 UTC\""
+            },
+            {
+              "rule": "colors",
+              "message": "6 nhóm màu trong một màn (nên ≤ 3): #364f2f ở span.avatar \"MC\"; #922c22 ở span.badge \"Critical\"; #794908 ở span.badge \"Held\"; #315573 ở span.badge \"Authorized\"; #e8efdf ở span.badge \"Settled\"; #654578 ở span.badge \"Escalated\""
+            },
+            {
+              "rule": "tile-rainbow",
+              "message": "17 ô cùng loại tô 4 màu khác nhau (#fae9e3, #e6eff6, #e8efdf, #f0e9f4): span.badge \"Critical\". Dùng một màu nền chung; màu chỉ để báo trạng thái"
+            }
+          ]
+        },
+        {
+          "name": "axe-core",
+          "errors": [],
+          "warnings": []
+        }
+      ]
+    },
+    {
+      "page": "http://127.0.0.1:4181/#/transactions",
+      "width": 390,
+      "theme": "dark",
+      "reflow": false,
+      "screens": [
+        {
+          "name": "Aegis | Risk Operations",
+          "errors": [],
+          "warnings": [
+            {
+              "rule": "edge",
+              "message": "Chữ cách mép màn 0px (nên ≥ 16px): th \"Origin\""
+            },
+            {
+              "rule": "edge",
+              "message": "Chữ cách mép màn 0px (nên ≥ 16px): th \"Payment\""
+            },
+            {
+              "rule": "edge",
+              "message": "Chữ cách mép màn 0px (nên ≥ 16px): th \"Investigation\""
+            },
+            {
+              "rule": "edge",
+              "message": "Chữ cách mép màn 0px (nên ≥ 16px): th \"Received\""
+            },
+            {
+              "rule": "wrap-review",
+              "message": "Nội dung ngắn xuống dòng; kiểm tra chủ đích theo brief: span.identity-merchant \"Northline Electronics\""
+            },
+            {
+              "rule": "edge",
+              "message": "Chữ cách mép màn 0px (nên ≥ 16px): td \"Austin, US\""
+            },
+            {
+              "rule": "edge",
+              "message": "Chữ cách mép màn 0px (nên ≥ 16px): span.badge \"Held\""
+            },
+            {
+              "rule": "edge",
+              "message": "Chữ cách mép màn 0px (nên ≥ 16px): span.badge \"Open\""
+            },
+            {
+              "rule": "edge",
+              "message": "Chữ cách mép màn 0px (nên ≥ 16px): time \"9 Nov, 13:42 UTC\""
+            },
+            {
+              "rule": "edge",
+              "message": "Chữ cách mép màn 0px (nên ≥ 16px): td \"London, UK\""
+            },
+            {
+              "rule": "edge",
+              "message": "Chữ cách mép màn 0px (nên ≥ 16px): span.badge \"Authorized\""
+            },
+            {
+              "rule": "edge",
+              "message": "Chữ cách mép màn 0px (nên ≥ 16px): span.badge \"In review\""
+            },
+            {
+              "rule": "edge",
+              "message": "Chữ cách mép màn 0px (nên ≥ 16px): time \"9 Nov, 12:39 UTC\""
+            },
+            {
+              "rule": "edge",
+              "message": "Chữ cách mép màn 0px (nên ≥ 16px): td \"Amsterdam, NL\""
+            },
+            {
+              "rule": "edge",
+              "message": "Chữ cách mép màn 0px (nên ≥ 16px): time \"9 Nov, 11:36 UTC\""
+            },
+            {
+              "rule": "edge",
+              "message": "Chữ cách mép màn 0px (nên ≥ 16px): td \"Portland, US\""
+            },
+            {
+              "rule": "edge",
+              "message": "Chữ cách mép màn 0px (nên ≥ 16px): span.badge \"Settled\""
+            },
+            {
+              "rule": "edge",
+              "message": "Chữ cách mép màn 0px (nên ≥ 16px): time \"9 Nov, 10:33 UTC\""
+            },
+            {
+              "rule": "edge",
+              "message": "Chữ cách mép màn 0px (nên ≥ 16px): td \"Berlin, DE\""
+            },
+            {
+              "rule": "edge",
+              "message": "Chữ cách mép màn 0px (nên ≥ 16px): time \"9 Nov, 09:30 UTC\""
+            },
+            {
+              "rule": "edge",
+              "message": "Chữ cách mép màn 0px (nên ≥ 16px): td \"Bristol, UK\""
+            },
+            {
+              "rule": "edge",
+              "message": "Chữ cách mép màn 0px (nên ≥ 16px): span.badge \"Declined\""
+            },
+            {
+              "rule": "edge",
+              "message": "Chữ cách mép màn 0px (nên ≥ 16px): span.badge \"No case\""
+            },
+            {
+              "rule": "edge",
+              "message": "Chữ cách mép màn 0px (nên ≥ 16px): time \"9 Nov, 08:27 UTC\""
+            },
+            {
+              "rule": "edge",
+              "message": "Chữ cách mép màn 0px (nên ≥ 16px): td \"Lyon, FR\""
+            },
+            {
+              "rule": "edge",
+              "message": "Chữ cách mép màn 0px (nên ≥ 16px): span.badge \"Escalated\""
+            },
+            {
+              "rule": "edge",
+              "message": "Chữ cách mép màn 0px (nên ≥ 16px): time \"9 Nov, 07:24 UTC\""
+            },
+            {
+              "rule": "edge",
+              "message": "Chữ cách mép màn 0px (nên ≥ 16px): td \"Boulder, US\""
+            },
+            {
+              "rule": "edge",
+              "message": "Chữ cách mép màn 0px (nên ≥ 16px): time \"9 Nov, 06:21 UTC\""
+            },
+            {
+              "rule": "colors",
+              "message": "5 nhóm màu trong một màn (nên ≤ 3): #cee2c0 ở span.avatar \"MC\"; #ffc4b8 ở span.badge \"Critical\"; #f5d298 ở span.badge \"Held\"; #bddcf2 ở span.badge \"Authorized\"; #e6c9f4 ở span.badge \"Escalated\""
+            }
+          ]
+        },
+        {
+          "name": "axe-core",
+          "errors": [],
+          "warnings": []
+        }
+      ]
+    },
+    {
+      "page": "http://127.0.0.1:4181/#/transactions",
+      "width": 1280,
+      "theme": "light",
+      "reflow": false,
+      "screens": [
+        {
+          "name": "Aegis | Risk Operations",
+          "errors": [],
+          "warnings": [
+            {
+              "rule": "radius",
+              "message": "Card có 2 bán kính bo góc khác nhau: 0px (header.topbar \"Risk operations AegisMCMaya ChenFraud An\"); 8px (section.panel \"Risk levelAll risk levelsCriticalHighMed\")"
+            },
+            {
+              "rule": "colors",
+              "message": "6 nhóm màu trong một màn (nên ≤ 3): #364f2f ở a.nav-item \"Transactions\"; #922c22 ở span.badge \"Critical\"; #794908 ở span.badge \"Held\"; #315573 ở span.badge \"Authorized\"; #e8efdf ở span.badge \"Settled\"; #654578 ở span.badge \"Escalated\""
+            },
+            {
+              "rule": "tile-rainbow",
+              "message": "17 ô cùng loại tô 4 màu khác nhau (#fae9e3, #e6eff6, #e8efdf, #f0e9f4): span.badge \"Critical\". Dùng một màu nền chung; màu chỉ để báo trạng thái"
+            }
+          ]
+        },
+        {
+          "name": "axe-core",
+          "errors": [],
+          "warnings": []
+        }
+      ]
+    },
+    {
+      "page": "http://127.0.0.1:4181/#/transactions",
+      "width": 1280,
+      "theme": "dark",
+      "reflow": false,
+      "screens": [
+        {
+          "name": "Aegis | Risk Operations",
+          "errors": [],
+          "warnings": [
+            {
+              "rule": "radius",
+              "message": "Card có 2 bán kính bo góc khác nhau: 0px (header.topbar \"Risk operations AegisMCMaya ChenFraud An\"); 8px (section.panel \"Risk levelAll risk levelsCriticalHighMed\")"
+            },
+            {
+              "rule": "colors",
+              "message": "5 nhóm màu trong một màn (nên ≤ 3): #cee2c0 ở a.nav-item \"Transactions\"; #ffc4b8 ở span.badge \"Critical\"; #f5d298 ở span.badge \"Held\"; #bddcf2 ở span.badge \"Authorized\"; #e6c9f4 ở span.badge \"Escalated\""
+            }
+          ]
+        },
+        {
+          "name": "axe-core",
+          "errors": [],
+          "warnings": []
+        }
+      ]
+    },
+    {
+      "page": "http://127.0.0.1:4181/#/transactions",
+      "width": 320,
+      "theme": "light",
+      "reflow": true,
+      "screens": [
+        {
+          "name": "Aegis | Risk Operations (reflow 320 px)",
+          "errors": [],
+          "warnings": []
+        }
+      ]
+    },
+    {
+      "page": "http://127.0.0.1:4181/#/analytics",
+      "width": 390,
+      "theme": "light",
+      "reflow": false,
+      "screens": [
+        {
+          "name": "Aegis | Risk Operations",
+          "errors": [],
+          "warnings": []
+        },
+        {
+          "name": "axe-core",
+          "errors": [],
+          "warnings": []
+        }
+      ]
+    },
+    {
+      "page": "http://127.0.0.1:4181/#/analytics",
+      "width": 390,
+      "theme": "dark",
+      "reflow": false,
+      "screens": [
+        {
+          "name": "Aegis | Risk Operations",
+          "errors": [],
+          "warnings": []
+        },
+        {
+          "name": "axe-core",
+          "errors": [],
+          "warnings": []
+        }
+      ]
+    },
+    {
+      "page": "http://127.0.0.1:4181/#/analytics",
+      "width": 1280,
+      "theme": "light",
+      "reflow": false,
+      "screens": [
+        {
+          "name": "Aegis | Risk Operations",
+          "errors": [],
+          "warnings": [
+            {
+              "rule": "radius",
+              "message": "Card có 2 bán kính bo góc khác nhau: 0px (header.topbar \"Risk operations AegisMCMaya ChenFraud An\"); 8px (div.metric-strip \"Alerts / 7 days353 Nov to 9 NovCases res\")"
+            }
+          ]
+        },
+        {
+          "name": "axe-core",
+          "errors": [],
+          "warnings": []
+        }
+      ]
+    },
+    {
+      "page": "http://127.0.0.1:4181/#/analytics",
+      "width": 1280,
+      "theme": "dark",
+      "reflow": false,
+      "screens": [
+        {
+          "name": "Aegis | Risk Operations",
+          "errors": [],
+          "warnings": [
+            {
+              "rule": "radius",
+              "message": "Card có 2 bán kính bo góc khác nhau: 0px (header.topbar \"Risk operations AegisMCMaya ChenFraud An\"); 8px (div.metric-strip \"Alerts / 7 days353 Nov to 9 NovCases res\")"
+            }
+          ]
+        },
+        {
+          "name": "axe-core",
+          "errors": [],
+          "warnings": []
+        }
+      ]
+    },
+    {
+      "page": "http://127.0.0.1:4181/#/analytics",
+      "width": 320,
+      "theme": "light",
+      "reflow": true,
+      "screens": [
+        {
+          "name": "Aegis | Risk Operations (reflow 320 px)",
+          "errors": [],
+          "warnings": []
+        }
+      ]
+    }
+  ]
+}
