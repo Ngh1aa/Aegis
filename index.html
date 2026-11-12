@@ -15,14 +15,18 @@
 <link rel="stylesheet" href="css/aegis.css">
 </head>
 <body class="ds-root aegis">
+<!--@HEADER home-->
 <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
   <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
   <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
   <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5 9.5 17 19 7.5"/></symbol>
   <symbol id="i-check-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.25"/><path d="m8.5 12.25 2.4 2.4 4.6-4.9"/></symbol>
   <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 4.5 20.5 19h-17z"/><path d="M12 10v4M12 16.75v.01"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.25"/><path d="M12 11v5M12 8.25v.01"/></symbol>
   <symbol id="i-minus" viewBox="0 0 24 24"><path d="M6 12h12"/></symbol>
   <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 6v12M6 12h12"/></symbol>
+  <symbol id="i-chev-left" viewBox="0 0 24 24"><path d="m14.5 6-6 6 6 6"/></symbol>
+  <symbol id="i-chev-right" viewBox="0 0 24 24"><path d="m9.5 6 6 6-6 6"/></symbol>
 </svg>
 
 <a class="skip" href="#main">Skip to content</a>
@@ -32,11 +36,13 @@
     <a class="wordmark" href="#top" aria-label="Aegis, back to top">AEGIS</a>
     <p class="hdr__now" id="now"><span class="hdr__now-t">15:40</span><span class="hdr__now-l">Arrival</span></p>
     <nav class="nav" aria-label="Main">
-      <a href="#arrival">The day</a>
-      <a href="#rooms">Rooms</a>
-      <a href="#bar">Bar and library</a>
+      <a href="rooms.html">Rooms</a>
+      <a href="dining.html">Dining</a>
+      <a href="spa.html">Spa</a>
+      <a href="stay.html">My stay</a>
+      <a href="contact.html">Contact</a>
     </nav>
-    <a class="ds-button ds-button--primary hdr__cta" href="#stay">Plan your stay</a>
+    <a class="ds-button ds-button--primary hdr__cta" href="book.html">Book a stay</a>
     <button class="icon-btn menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mmenu"><svg class="ds-icon" aria-hidden="true"><use href="#i-menu"/></svg></button>
   </div>
   <div class="progress" aria-hidden="true"><i id="progress"></i></div>
@@ -44,10 +50,17 @@
 
 <div class="mmenu" id="mmenu" role="dialog" aria-modal="true" aria-label="Menu" hidden>
   <div class="mmenu__top">
-    <a class="wordmark" href="#top">AEGIS</a>
+    <a class="wordmark" href="index.html">AEGIS</a>
     <button class="icon-btn" type="button" aria-label="Close menu" data-close-menu><svg class="ds-icon" aria-hidden="true"><use href="#i-x"/></svg></button>
   </div>
-  <nav aria-label="The day, by time">
+  <nav class="mmenu__main" aria-label="Main">
+    <a href="rooms.html">Rooms</a>
+    <a href="dining.html">Dining</a>
+    <a href="spa.html">Spa</a>
+    <a href="stay.html">My stay</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+  <nav class="mmenu__day" aria-label="The day, by time">
     <a href="#arrival"><span>15:40</span>Arrival</a>
     <a href="#hall"><span>16:10</span>The hall</a>
     <a href="#rooms"><span>17:30</span>Your room</a>
@@ -57,9 +70,10 @@
     <a href="#terrace"><span>08:00</span>The terrace</a>
   </nav>
   <div class="cta-row on-dark">
-    <a class="ds-button ds-button--primary ds-button--lg" href="#stay">Plan your stay</a>
+    <a class="ds-button ds-button--primary ds-button--lg" href="book.html">Book a stay</a>
   </div>
 </div>
+<!--/@HEADER-->
 
 <!-- Time rail: where in the day you are; each stop jumps to its chapter -->
 <nav class="rail" aria-label="The day, by time">
@@ -132,24 +146,25 @@
       <figure class="rooms__img" data-reveal="img"><img src="img/alpine/balcony.jpg" width="1800" height="1013" alt="A balcony lined with red geraniums above a valley of meadows and forest under morning cloud"></figure>
       <ul class="roomlist">
         <li class="roomrow" data-reveal>
-          <h3>Valley Room</h3>
+          <h3><a class="roomrow__link" href="room.html?id=valley">Valley Room</a></h3>
           <p>28 m², queen bed, window seat over the meadows</p>
           <p class="roomrow__price">From €280 a night</p>
           <a class="ds-button ds-button--secondary" href="#stay" data-room="valley">Choose this room</a>
         </li>
         <li class="roomrow" data-reveal style="--d:100ms">
-          <h3>Balcony Room</h3>
+          <h3><a class="roomrow__link" href="room.html?id=balcony">Balcony Room</a></h3>
           <p>34 m², king bed, a balcony with flower boxes</p>
           <p class="roomrow__price">From €360 a night</p>
           <a class="ds-button ds-button--secondary" href="#stay" data-room="balcony">Choose this room</a>
         </li>
         <li class="roomrow" data-reveal style="--d:200ms">
-          <h3>Tower Suite</h3>
+          <h3><a class="roomrow__link" href="room.html?id=tower">Tower Suite</a></h3>
           <p>56 m², king bed and sitting room, windows on three sides</p>
           <p class="roomrow__price">From €620 a night</p>
           <a class="ds-button ds-button--secondary" href="#stay" data-room="tower">Choose this room</a>
         </li>
       </ul>
+      <p class="rooms__all" data-reveal><a class="ds-button ds-button--tertiary" href="rooms.html">See all six rooms</a></p>
     </div>
   </section>
 
@@ -164,6 +179,7 @@
           <dt>Open</dt><dd>4pm–1am daily</dd>
           <dt>Seats</dt><dd>36 at the glass</dd>
         </dl>
+        <div class="cta-row ch-cta"><a class="ds-button ds-button--secondary" href="dining.html#reserve">Book a table</a></div>
       </div>
       <figure class="bar__a" data-reveal="img"><img src="img/alpine/bar-view.jpg" width="1800" height="1350" alt="A long wooden bar along tall windows, mountains outside in evening light"></figure>
       <figure class="bar__b arch" data-reveal="img" style="--d:150ms"><img src="img/alpine/bar-red.jpg" width="1800" height="1350" alt="Bar stools and plants under warm red lights, glazing onto the mountains"></figure>
@@ -186,7 +202,7 @@
           <li data-reveal><b>02</b><div><h3>Sherry cask, from Speyside</h3><p>Dried fruit and walnut, best with the chocolate plate.</p></div></li>
           <li data-reveal><b>03</b><div><h3>Rye, from down the valley</h3><p>Spice and pepper from a distillery two villages away.</p></div></li>
         </ol>
-        <p class="note" data-reveal>Guided tastings at 9pm, Thursday to Saturday.</p>
+        <div class="note-row" data-reveal><p class="note">Guided tastings at 9pm, Thursday to Saturday.</p><a class="ds-button ds-button--secondary" href="spa.html?item=tasting#book">Book a tasting</a></div>
       </div>
     </div>
   </section>
@@ -224,12 +240,7 @@
       <h2 class="sec-title" id="stay-title" data-reveal>Plan your stay</h2>
 
       <div class="stay__main" data-reveal>
-        <div class="panel" aria-live="polite">
-          <div class="ds-banner ds-banner--danger" role="alert" data-net-error hidden>
-            <svg class="ds-icon" aria-hidden="true"><use href="#i-alert"/></svg>
-            <div>Couldn’t send because you’re offline. Check your connection and try again; your details are still here.</div>
-          </div>
-
+        <div class="panel">
           <form class="form" id="stay-form" novalidate data-step="form">
             <fieldset class="choice">
               <legend class="ds-field__label">Room</legend>
@@ -257,34 +268,15 @@
                 <button class="stepper__btn" type="button" data-step-dir="1" aria-label="More guests"><svg class="ds-icon" aria-hidden="true"><use href="#i-plus"/></svg></button>
                 <span class="stepper__unit">adults</span>
               </div>
-              <p class="ds-field__hint" id="s-guests-max" hidden>Rooms sleep up to 3. For more guests, book a second room.</p>
+              <p class="ds-field__hint" id="s-guests-max" hidden>These rooms sleep up to 3. The <a href="room.html?id=family">Chalet Family Room</a> sleeps 4.</p>
             </div>
             <div class="ds-banner ds-banner--warning" id="soldout" hidden>
               <svg class="ds-icon" aria-hidden="true"><use href="#i-alert"/></svg>
               <div><p id="soldout-text"></p><button class="ds-button ds-button--secondary ds-button--sm" type="button" id="soldout-alt">Try other dates</button></div>
             </div>
-            <div class="row2">
-              <div class="ds-field">
-                <label class="ds-field__label" for="g-name">Full name</label>
-                <input class="ds-field__control" id="g-name" autocomplete="name" required aria-describedby="g-name-err">
-                <p class="ds-field__error" id="g-name-err" hidden><svg class="ds-icon ds-icon--sm" aria-hidden="true"><use href="#i-alert"/></svg><span>Enter the name the booking should be under.</span></p>
-              </div>
-              <div class="ds-field">
-                <label class="ds-field__label" for="g-email">Email</label>
-                <input class="ds-field__control" id="g-email" type="email" inputmode="email" autocomplete="email" required aria-describedby="g-email-err">
-                <p class="ds-field__error" id="g-email-err" hidden><svg class="ds-icon ds-icon--sm" aria-hidden="true"><use href="#i-alert"/></svg><span>Enter a valid email, for example name@gmail.com.</span></p>
-              </div>
-            </div>
-            <div class="form-actions"><button class="ds-button ds-button--primary ds-button--lg" type="submit">Request booking</button></div>
+            <div class="form-actions"><button class="ds-button ds-button--primary ds-button--lg" type="submit">Check availability</button><a class="ds-button ds-button--tertiary ds-button--lg" href="rooms.html">Compare all rooms</a></div>
           </form>
 
-          <div class="done step" id="stay-done" data-step="done" hidden tabindex="-1">
-            <svg class="ds-icon done__icon" aria-hidden="true"><use href="#i-check-circle"/></svg>
-            <h3>Booking requested</h3>
-            <dl class="summary" id="done-summary"></dl>
-            <p>We’ll email your confirmation within two hours. Nothing is charged until you arrive.</p>
-            <button class="ds-button ds-button--secondary" type="button" id="book-again">Plan another stay</button>
-          </div>
         </div>
       </div>
 
@@ -305,41 +297,41 @@
   </section>
 </main>
 
+<!--@FOOTER home-->
 <footer class="ftr">
   <div class="wrap g12">
-    <a class="wordmark" href="#top">AEGIS</a>
+    <a class="wordmark" href="index.html">AEGIS</a>
+    <div class="ftr__col">
+      <h3>Stay</h3>
+      <a href="rooms.html">Rooms and suites</a>
+      <a href="book.html">Book a stay</a>
+      <a href="stay.html">My stay</a>
+    </div>
+    <div class="ftr__col">
+      <h3>Hotel</h3>
+      <a href="dining.html">Dining</a>
+      <a href="spa.html">Spa and experiences</a>
+      <a href="contact.html">Contact and directions</a>
+    </div>
     <div class="ftr__col">
       <h3>The day</h3>
       <a href="#arrival">Arrival</a>
       <a href="#bar">The bar</a>
       <a href="#morning">Morning</a>
     </div>
-    <div class="ftr__col">
-      <h3>Stay</h3>
-      <a href="#rooms">Rooms</a>
-      <a href="#stay">Plan your stay</a>
-      <a href="legal.html#terms">Booking terms</a>
-    </div>
     <p class="ftr__credit">Photography by <a href="https://commons.wikimedia.org/wiki/User:Bybbisch94">Bybbisch94</a> via Wikimedia Commons, licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>; cropped and resized. <a class="nowrap" href="legal.html#credits">Full photo credits</a></p>
     <p class="ftr__meta">© 2026 Aegis</p>
     <div class="ftr__legal">
       <a href="legal.html#privacy">Privacy policy</a>
-      <a href="legal.html#credits">Photo credits</a>
+      <a href="legal.html#terms">Booking terms</a>
+      <button class="ftr__reset" type="button" data-reset>Reset demo data</button>
     </div>
   </div>
 </footer>
+<!--/@FOOTER-->
 
-<div class="dialog-scrim" id="confirm" hidden>
-  <div class="dialog" role="alertdialog" aria-modal="true" aria-labelledby="confirm-title" aria-describedby="confirm-body">
-    <h3 id="confirm-title">Request booking?</h3>
-    <dl class="summary" id="confirm-body"></dl>
-    <div class="form-actions between">
-      <button class="ds-button ds-button--secondary ds-button--lg" type="button" data-confirm="cancel">Cancel</button>
-      <button class="ds-button ds-button--primary ds-button--lg" type="button" data-confirm="ok">Request booking</button>
-    </div>
-  </div>
-</div>
-
+<script src="js/data.js" defer></script>
+<script src="js/site.js" defer></script>
 <script src="js/aegis.js" defer></script>
 </body>
 </html>

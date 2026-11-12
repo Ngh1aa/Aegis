@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dining at Aegis</title>
+<meta name="description" content="Breakfast and dinner in the hall, drinks at the long bar. See the menus and reserve a table at Aegis.">
+<meta name="theme-color" content="#141d2b">
+<script>document.documentElement.classList.add('js');setTimeout(function(){if(!window.__aegis)document.documentElement.classList.remove('js');},3000);</script>
+<link rel="preload" href="fonts/fraunces/Fraunces.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="stylesheet" href="fonts/fonts.css">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/brand.css">
+<link rel="stylesheet" href="css/aegis.css">
+<link rel="stylesheet" href="css/pages.css">
+</head>
+<body class="ds-root aegis page">
+<!--@HEADER dining-->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5 9.5 17 19 7.5"/></symbol>
+  <symbol id="i-check-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.25"/><path d="m8.5 12.25 2.4 2.4 4.6-4.9"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 4.5 20.5 19h-17z"/><path d="M12 10v4M12 16.75v.01"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.25"/><path d="M12 11v5M12 8.25v.01"/></symbol>
+  <symbol id="i-minus" viewBox="0 0 24 24"><path d="M6 12h12"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 6v12M6 12h12"/></symbol>
+  <symbol id="i-chev-left" viewBox="0 0 24 24"><path d="m14.5 6-6 6 6 6"/></symbol>
+  <symbol id="i-chev-right" viewBox="0 0 24 24"><path d="m9.5 6 6 6-6 6"/></symbol>
+</svg>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="hdr" id="hdr">
+  <div class="wrap hdr__in">
+    <a class="wordmark" href="index.html" aria-label="Aegis, home">AEGIS</a>
+    <nav class="nav" aria-label="Main">
+      <a href="rooms.html">Rooms</a>
+      <a href="dining.html" aria-current="page">Dining</a>
+      <a href="spa.html">Spa</a>
+      <a href="stay.html">My stay</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <a class="ds-button ds-button--primary hdr__cta" href="book.html">Book a stay</a>
+    <button class="icon-btn menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mmenu"><svg class="ds-icon" aria-hidden="true"><use href="#i-menu"/></svg></button>
+  </div>
+</header>
+
+<div class="mmenu" id="mmenu" role="dialog" aria-modal="true" aria-label="Menu" hidden>
+  <div class="mmenu__top">
+    <a class="wordmark" href="index.html">AEGIS</a>
+    <button class="icon-btn" type="button" aria-label="Close menu" data-close-menu><svg class="ds-icon" aria-hidden="true"><use href="#i-x"/></svg></button>
+  </div>
+  <nav class="mmenu__main" aria-label="Main">
+    <a href="rooms.html">Rooms</a>
+    <a href="dining.html" aria-current="page">Dining</a>
+    <a href="spa.html">Spa</a>
+    <a href="stay.html">My stay</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+  <div class="cta-row on-dark">
+    <a class="ds-button ds-button--primary ds-button--lg" href="book.html">Book a stay</a>
+  </div>
+</div>
+<!--/@HEADER-->
+
+<main id="main" class="page-main">
+  <div class="wrap g12 intro">
+    <h1 class="page-title">Dining</h1>
+    <figure class="intro__img arch"><img src="img/alpine/hall-1.jpg" width="1800" height="1013" alt="Arcaded hall with pink marble columns, black chairs and a grand piano"></figure>
+    <div class="intro__copy">
+      <p class="intro__lead">Dinner is served in the hall under the arches, breakfast on the terrace when the weather allows, and the long bar stays open until one.</p>
+      <dl class="facts-list">
+        <dt>Breakfast</dt><dd>7–10:30am</dd>
+        <dt>Dinner</dt><dd>6:30–9:30pm</dd>
+        <dt>Bar</dt><dd>4pm–1am</dd>
+        <dt>Dress</dt><dd>As you are</dd>
+      </dl>
+      <div class="cta-row">
+        <a class="ds-button ds-button--primary ds-button--lg" href="#reserve">Reserve a table</a>
+        <a class="ds-button ds-button--secondary ds-button--lg" href="#menus">See the menus</a>
+      </div>
+    </div>
+  </div>
+
+  <section class="sect" id="menus" aria-labelledby="t-menus">
+    <div class="wrap g12">
+      <h2 class="sec-h" id="t-menus">Menus</h2>
+      <div class="menus">
+        <div class="ds-tabs" role="tablist" aria-label="Menus" id="menu-tabs"></div>
+        <div id="menu-panels"></div>
+      </div>
+      <figure class="menus__img arch"><img src="img/alpine/bar-glasses.jpg" width="1800" height="1350" alt="Rows of stemmed glasses set out on a round table in front of the bottle wall" loading="lazy"></figure>
+    </div>
+  </section>
+
+  <section class="sect" id="reserve" aria-labelledby="t-reserve">
+    <div class="wrap g12">
+      <h2 class="sec-h" id="t-reserve">Reserve a table</h2>
+      <div class="res__main">
+        <div class="panel">
+          <form class="form step" id="table-form" novalidate>
+            <div class="ds-field">
+              <span class="ds-field__label" id="t-date-label">Date</span>
+              <div class="cal cal--single" id="t-cal" role="group" aria-labelledby="t-date-label"></div>
+            </div>
+            <fieldset class="chips slots" id="t-slots" aria-describedby="t-slot-err">
+              <legend class="ds-field__label">Time</legend>
+            </fieldset>
+            <p class="ds-field__error" id="t-slot-err" hidden><svg class="ds-icon ds-icon--sm" aria-hidden="true"><use href="#i-alert"/></svg><span>Choose a time.</span></p>
+            <div class="ds-field">
+              <span class="ds-field__label" id="t-party-label">Party size</span>
+              <div class="stepper" role="group" aria-labelledby="t-party-label" id="t-party">
+                <button class="stepper__btn" type="button" aria-label="Fewer people"><svg class="ds-icon" aria-hidden="true"><use href="#i-minus"/></svg></button>
+                <output class="stepper__val" aria-live="polite">2</output>
+                <button class="stepper__btn" type="button" aria-label="More people"><svg class="ds-icon" aria-hidden="true"><use href="#i-plus"/></svg></button>
+                <span class="stepper__unit">people</span>
+              </div>
+            </div>
+            <div class="row2">
+              <div class="ds-field">
+                <label class="ds-field__label" for="t-name">Name</label>
+                <input class="ds-field__control" id="t-name" autocomplete="name" required aria-describedby="t-name-err">
+                <p class="ds-field__error" id="t-name-err" hidden><svg class="ds-icon ds-icon--sm" aria-hidden="true"><use href="#i-alert"/></svg><span>Enter a first name and surname.</span></p>
+              </div>
+              <div class="ds-field">
+                <label class="ds-field__label" for="t-email">Email</label>
+                <input class="ds-field__control" id="t-email" type="email" inputmode="email" autocomplete="email" required aria-describedby="t-email-err">
+                <p class="ds-field__error" id="t-email-err" hidden><svg class="ds-icon ds-icon--sm" aria-hidden="true"><use href="#i-alert"/></svg><span>Enter a valid email, for example name@gmail.com.</span></p>
+              </div>
+            </div>
+            <div class="ds-field">
+              <label class="ds-field__label" for="t-notes">Requests (optional)</label>
+              <textarea class="ds-field__control" id="t-notes" rows="2" maxlength="300"></textarea>
+            </div>
+            <div class="ds-banner ds-banner--danger" role="alert" id="t-net" hidden>
+              <svg class="ds-icon" aria-hidden="true"><use href="#i-alert"/></svg>
+              <div>Couldn’t send because you’re offline. Check your connection and try again; your details are still here.</div>
+            </div>
+            <div class="form-actions">
+              <button class="ds-button ds-button--primary ds-button--lg" type="submit" id="t-submit">Reserve table</button>
+            </div>
+          </form>
+
+          <div class="step done" id="t-done" hidden tabindex="-1">
+            <svg class="ds-icon done__icon" aria-hidden="true"><use href="#i-check-circle"/></svg>
+            <h3 class="h3">Table saved</h3>
+            <dl class="summary" id="t-summary"></dl>
+            <div class="ds-banner note-banner" role="note">
+              <svg class="ds-icon" aria-hidden="true"><use href="#i-info"/></svg>
+              <div>This is a prototype; no table was reserved. The reservation is kept in this browser tab and shows in My stay when the surname matches a booking.</div>
+            </div>
+            <div class="form-actions">
+              <a class="ds-button ds-button--primary ds-button--lg" href="stay.html">View my stay</a>
+              <button class="ds-button ds-button--secondary ds-button--lg" type="button" id="t-again">Reserve another</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <aside class="res__side" aria-label="Table policies">
+        <ul class="policies">
+          <li><b>Hotel guests first</b><span>Tables are held for guests staying at Aegis until noon each day.</span></li>
+          <li><b>Held for 15 minutes</b><span>Call reception if you are running late.</span></li>
+          <li><b>Groups over eight</b><span>Email us and we will set the long table in the library.</span></li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+</main>
+
+<!--@FOOTER dining-->
+<footer class="ftr">
+  <div class="wrap g12">
+    <a class="wordmark" href="index.html">AEGIS</a>
+    <div class="ftr__col">
+      <h3>Stay</h3>
+      <a href="rooms.html">Rooms and suites</a>
+      <a href="book.html">Book a stay</a>
+      <a href="stay.html">My stay</a>
+    </div>
+    <div class="ftr__col">
+      <h3>Hotel</h3>
+      <a href="dining.html">Dining</a>
+      <a href="spa.html">Spa and experiences</a>
+      <a href="contact.html">Contact and directions</a>
+    </div>
+    <div class="ftr__col">
+      <h3>The day</h3>
+      <a href="index.html#arrival">Arrival</a>
+      <a href="index.html#bar">The bar</a>
+      <a href="index.html#morning">Morning</a>
+    </div>
+    <p class="ftr__credit">Photography by <a href="https://commons.wikimedia.org/wiki/User:Bybbisch94">Bybbisch94</a> via Wikimedia Commons, licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>; cropped and resized. <a class="nowrap" href="legal.html#credits">Full photo credits</a></p>
+    <p class="ftr__meta">© 2026 Aegis</p>
+    <div class="ftr__legal">
+      <a href="legal.html#privacy">Privacy policy</a>
+      <a href="legal.html#terms">Booking terms</a>
+      <button class="ftr__reset" type="button" data-reset>Reset demo data</button>
+    </div>
+  </div>
+</footer>
+<!--/@FOOTER-->
+
+<script src="js/data.js" defer></script>
+<script src="js/site.js" defer></script>
+<script src="js/dining.js" defer></script>
+</body>
+</html>

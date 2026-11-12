@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Book a stay at Aegis</title>
+<meta name="description" content="Choose your dates, room and extras, and book a stay at Aegis. Pay at the hotel.">
+<meta name="theme-color" content="#141d2b">
+<script>document.documentElement.classList.add('js');setTimeout(function(){if(!window.__aegis)document.documentElement.classList.remove('js');},3000);</script>
+<link rel="preload" href="fonts/fraunces/Fraunces.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="stylesheet" href="fonts/fonts.css">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/brand.css">
+<link rel="stylesheet" href="css/aegis.css">
+<link rel="stylesheet" href="css/pages.css">
+</head>
+<body class="ds-root aegis page">
+<!--@HEADER book-->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5 9.5 17 19 7.5"/></symbol>
+  <symbol id="i-check-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.25"/><path d="m8.5 12.25 2.4 2.4 4.6-4.9"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 4.5 20.5 19h-17z"/><path d="M12 10v4M12 16.75v.01"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.25"/><path d="M12 11v5M12 8.25v.01"/></symbol>
+  <symbol id="i-minus" viewBox="0 0 24 24"><path d="M6 12h12"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 6v12M6 12h12"/></symbol>
+  <symbol id="i-chev-left" viewBox="0 0 24 24"><path d="m14.5 6-6 6 6 6"/></symbol>
+  <symbol id="i-chev-right" viewBox="0 0 24 24"><path d="m9.5 6 6 6-6 6"/></symbol>
+</svg>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="hdr" id="hdr">
+  <div class="wrap hdr__in">
+    <a class="wordmark" href="index.html" aria-label="Aegis, home">AEGIS</a>
+    <nav class="nav" aria-label="Main">
+      <a href="rooms.html">Rooms</a>
+      <a href="dining.html">Dining</a>
+      <a href="spa.html">Spa</a>
+      <a href="stay.html">My stay</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <a class="ds-button ds-button--primary hdr__cta" href="book.html" aria-current="page">Book a stay</a>
+    <button class="icon-btn menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mmenu"><svg class="ds-icon" aria-hidden="true"><use href="#i-menu"/></svg></button>
+  </div>
+</header>
+
+<div class="mmenu" id="mmenu" role="dialog" aria-modal="true" aria-label="Menu" hidden>
+  <div class="mmenu__top">
+    <a class="wordmark" href="index.html">AEGIS</a>
+    <button class="icon-btn" type="button" aria-label="Close menu" data-close-menu><svg class="ds-icon" aria-hidden="true"><use href="#i-x"/></svg></button>
+  </div>
+  <nav class="mmenu__main" aria-label="Main">
+    <a href="rooms.html">Rooms</a>
+    <a href="dining.html">Dining</a>
+    <a href="spa.html">Spa</a>
+    <a href="stay.html">My stay</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+  <div class="cta-row on-dark">
+    <a class="ds-button ds-button--primary ds-button--lg" href="book.html">Book a stay</a>
+  </div>
+</div>
+<!--/@HEADER-->
+
+<main id="main" class="page-main">
+  <div class="wrap g12 book">
+    <h1 class="page-title">Book a stay</h1>
+
+    <ol class="steps" id="steps" aria-label="Booking steps">
+      <li><button type="button" data-goto="dates"><b>1</b>Dates</button></li>
+      <li><button type="button" data-goto="room"><b>2</b>Room</button></li>
+      <li><button type="button" data-goto="extras"><b>3</b>Extras</button></li>
+      <li><button type="button" data-goto="details"><b>4</b>Details</button></li>
+      <li><button type="button" data-goto="review"><b>5</b>Review</button></li>
+    </ol>
+
+    <div class="book__main">
+      <div class="panel">
+        <!-- 1. Dates and guests -->
+        <section class="step" data-step="dates" aria-labelledby="t-dates" tabindex="-1">
+          <h2 class="h2" id="t-dates">Dates and guests</h2>
+          <div class="cal" id="cal" role="group" aria-label="Choose check-in and check-out"></div>
+          <dl class="picked" id="picked">
+            <div><dt>Check-in</dt><dd id="p-in">Choose a date</dd></div>
+            <div><dt>Check-out</dt><dd id="p-out">Choose a date</dd></div>
+            <div><dt>Nights</dt><dd id="p-n">0</dd></div>
+          </dl>
+          <div class="ds-field">
+            <span class="ds-field__label" id="b-guests-label">Guests</span>
+            <div class="stepper" role="group" aria-labelledby="b-guests-label" id="b-guests">
+              <button class="stepper__btn" type="button" aria-label="Fewer guests"><svg class="ds-icon" aria-hidden="true"><use href="#i-minus"/></svg></button>
+              <output class="stepper__val" aria-live="polite">2</output>
+              <button class="stepper__btn" type="button" aria-label="More guests"><svg class="ds-icon" aria-hidden="true"><use href="#i-plus"/></svg></button>
+              <span class="stepper__unit">adults</span>
+            </div>
+          </div>
+          <div class="ds-banner ds-banner--warning" id="dates-note" role="status" hidden>
+            <svg class="ds-icon" aria-hidden="true"><use href="#i-alert"/></svg>
+            <div><p id="dates-note-text"></p></div>
+          </div>
+          <div class="form-actions">
+            <button class="ds-button ds-button--primary ds-button--lg" type="button" id="to-room" aria-describedby="dates-reason">Choose a room</button>
+            <p class="reason" id="dates-reason"></p>
+          </div>
+        </section>
+
+        <!-- 2. Room -->
+        <section class="step" data-step="room" aria-labelledby="t-room" tabindex="-1" hidden>
+          <h2 class="h2" id="t-room">Choose a room</h2>
+          <fieldset class="ropts" id="ropts">
+            <legend class="ds-visually-hidden">Room</legend>
+          </fieldset>
+          <div class="form-actions between">
+            <button class="ds-button ds-button--secondary ds-button--lg" type="button" data-back>Back</button>
+            <button class="ds-button ds-button--primary ds-button--lg" type="button" id="to-extras" aria-describedby="room-reason">Continue</button>
+          </div>
+          <p class="reason" id="room-reason"></p>
+        </section>
+
+        <!-- 3. Extras -->
+        <section class="step" data-step="extras" aria-labelledby="t-extras" tabindex="-1" hidden>
+          <h2 class="h2" id="t-extras">Extras</h2>
+          <fieldset class="xopts" id="xopts">
+            <legend class="ds-visually-hidden">Extras</legend>
+          </fieldset>
+          <div class="form-actions between">
+            <button class="ds-button ds-button--secondary ds-button--lg" type="button" data-back>Back</button>
+            <button class="ds-button ds-button--primary ds-button--lg" type="button" id="to-details">Continue</button>
+          </div>
+        </section>
+
+        <!-- 4. Guest details -->
+        <section class="step" data-step="details" aria-labelledby="t-details" tabindex="-1" hidden>
+          <h2 class="h2" id="t-details">Guest details</h2>
+          <form class="form" id="details" novalidate>
+            <div class="row2">
+              <div class="ds-field">
+                <label class="ds-field__label" for="d-first">First name</label>
+                <input class="ds-field__control" id="d-first" autocomplete="given-name" required aria-describedby="d-first-err">
+                <p class="ds-field__error" id="d-first-err" hidden><svg class="ds-icon ds-icon--sm" aria-hidden="true"><use href="#i-alert"/></svg><span>Enter a first name.</span></p>
+              </div>
+              <div class="ds-field">
+                <label class="ds-field__label" for="d-last">Surname</label>
+                <input class="ds-field__control" id="d-last" autocomplete="family-name" required aria-describedby="d-last-err">
+                <p class="ds-field__error" id="d-last-err" hidden><svg class="ds-icon ds-icon--sm" aria-hidden="true"><use href="#i-alert"/></svg><span>Enter a surname.</span></p>
+              </div>
+            </div>
+            <div class="row2">
+              <div class="ds-field">
+                <label class="ds-field__label" for="d-email">Email</label>
+                <input class="ds-field__control" id="d-email" type="email" inputmode="email" autocomplete="email" required aria-describedby="d-email-err">
+                <p class="ds-field__error" id="d-email-err" hidden><svg class="ds-icon ds-icon--sm" aria-hidden="true"><use href="#i-alert"/></svg><span>Enter a valid email, for example name@gmail.com.</span></p>
+              </div>
+              <div class="ds-field">
+                <label class="ds-field__label" for="d-phone">Phone (optional)</label>
+                <input class="ds-field__control" id="d-phone" type="tel" inputmode="tel" autocomplete="tel" aria-describedby="d-phone-err">
+                <p class="ds-field__error" id="d-phone-err" hidden><svg class="ds-icon ds-icon--sm" aria-hidden="true"><use href="#i-alert"/></svg><span>Enter a phone number with at least 7 digits.</span></p>
+              </div>
+            </div>
+            <div class="ds-field">
+              <label class="ds-field__label" for="d-arrival">Arrival time</label>
+              <div class="ds-field__wrap ds-field__wrap--select">
+                <select class="ds-field__control" id="d-arrival">
+                  <option value="">Not sure yet</option>
+                  <option>3–5pm</option>
+                  <option>5–7pm</option>
+                  <option>7–9pm</option>
+                  <option>After 9pm</option>
+                </select>
+              </div>
+            </div>
+            <div class="ds-field">
+              <label class="ds-field__label" for="d-notes">Requests (optional)</label>
+              <textarea class="ds-field__control" id="d-notes" rows="3" maxlength="400"></textarea>
+            </div>
+            <div class="pay">
+              <svg class="ds-icon" aria-hidden="true"><use href="#i-info"/></svg>
+              <p><b>Pay at the hotel.</b> No card is needed to book.</p>
+            </div>
+            <div class="form-actions between">
+              <button class="ds-button ds-button--secondary ds-button--lg" type="button" data-back>Back</button>
+              <button class="ds-button ds-button--primary ds-button--lg" type="submit">Review booking</button>
+            </div>
+          </form>
+        </section>
+
+        <!-- 5. Review -->
+        <section class="step" data-step="review" aria-labelledby="t-review" tabindex="-1" hidden>
+          <h2 class="h2" id="t-review">Review</h2>
+          <div class="review" id="review"></div>
+          <label class="ds-check terms">
+            <input type="checkbox" id="terms" aria-describedby="terms-err">
+            <span class="ds-check__box"><svg class="ds-icon" aria-hidden="true"><use href="#i-check"/></svg></span>
+            <span>I accept the <a href="legal.html#terms">booking terms</a></span>
+          </label>
+          <p class="ds-field__error" id="terms-err" hidden><svg class="ds-icon ds-icon--sm" aria-hidden="true"><use href="#i-alert"/></svg><span>Accept the booking terms to continue.</span></p>
+          <div class="ds-banner ds-banner--danger" role="alert" id="net-error" hidden>
+            <svg class="ds-icon" aria-hidden="true"><use href="#i-alert"/></svg>
+            <div>Couldn’t send because you’re offline. Check your connection and try again; your details are still here.</div>
+          </div>
+          <div class="form-actions between">
+            <button class="ds-button ds-button--secondary ds-button--lg" type="button" data-back>Back</button>
+            <button class="ds-button ds-button--primary ds-button--lg" type="button" id="confirm-booking">Confirm booking</button>
+          </div>
+        </section>
+
+        <!-- Confirmation -->
+        <section class="step done" data-step="done" aria-labelledby="t-done" tabindex="-1" hidden>
+          <svg class="ds-icon done__icon" aria-hidden="true"><use href="#i-check-circle"/></svg>
+          <h2 class="h2" id="t-done">Booking saved</h2>
+          <dl class="summary" id="done-summary"></dl>
+          <div class="ds-banner note-banner" role="note">
+            <svg class="ds-icon" aria-hidden="true"><use href="#i-info"/></svg>
+            <div>This is a prototype; no reservation was made and no card was charged. The booking is kept in this browser tab until you close it.</div>
+          </div>
+          <div class="form-actions">
+            <a class="ds-button ds-button--primary ds-button--lg" id="done-manage" href="stay.html">View my stay</a>
+            <a class="ds-button ds-button--secondary ds-button--lg" href="dining.html#reserve">Book a table</a>
+            <a class="ds-button ds-button--secondary ds-button--lg" href="spa.html">Add a treatment</a>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <aside class="book__side" aria-label="Your stay">
+      <div class="stay-card">
+        <p class="stay-card__label">Your stay</p>
+        <p class="stay-card__main" id="card-main">Choose a room</p>
+        <p class="stay-card__ctx" id="card-ctx">Choose dates to see the total</p>
+        <dl class="stay-card__sum" id="card-sum" hidden></dl>
+      </div>
+      <ul class="policies">
+        <li><b>Breakfast included</b><span>On the terrace from May to October, in the hall in winter.</span></li>
+        <li><b>Free cancellation</b><span>Until 72 hours before arrival.</span></li>
+        <li><b>Pay at the hotel</b><span>Prices include VAT; the local tourist tax is €4 per adult per night.</span></li>
+      </ul>
+    </aside>
+  </div>
+</main>
+
+<!--@FOOTER book-->
+<footer class="ftr">
+  <div class="wrap g12">
+    <a class="wordmark" href="index.html">AEGIS</a>
+    <div class="ftr__col">
+      <h3>Stay</h3>
+      <a href="rooms.html">Rooms and suites</a>
+      <a href="book.html">Book a stay</a>
+      <a href="stay.html">My stay</a>
+    </div>
+    <div class="ftr__col">
+      <h3>Hotel</h3>
+      <a href="dining.html">Dining</a>
+      <a href="spa.html">Spa and experiences</a>
+      <a href="contact.html">Contact and directions</a>
+    </div>
+    <div class="ftr__col">
+      <h3>The day</h3>
+      <a href="index.html#arrival">Arrival</a>
+      <a href="index.html#bar">The bar</a>
+      <a href="index.html#morning">Morning</a>
+    </div>
+    <p class="ftr__credit">Photography by <a href="https://commons.wikimedia.org/wiki/User:Bybbisch94">Bybbisch94</a> via Wikimedia Commons, licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>; cropped and resized. <a class="nowrap" href="legal.html#credits">Full photo credits</a></p>
+    <p class="ftr__meta">© 2026 Aegis</p>
+    <div class="ftr__legal">
+      <a href="legal.html#privacy">Privacy policy</a>
+      <a href="legal.html#terms">Booking terms</a>
+      <button class="ftr__reset" type="button" data-reset>Reset demo data</button>
+    </div>
+  </div>
+</footer>
+<!--/@FOOTER-->
+
+<script src="js/data.js" defer></script>
+<script src="js/site.js" defer></script>
+<script src="js/book.js" defer></script>
+</body>
+</html>

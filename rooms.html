@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Rooms and suites at Aegis</title>
+<meta name="description" content="Six rooms and suites at Aegis, from snug village rooms to the Tower Suite. Filter by guests, view and price.">
+<meta name="theme-color" content="#141d2b">
+<script>document.documentElement.classList.add('js');setTimeout(function(){if(!window.__aegis)document.documentElement.classList.remove('js');},3000);</script>
+<link rel="preload" href="fonts/fraunces/Fraunces.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="stylesheet" href="fonts/fonts.css">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/brand.css">
+<link rel="stylesheet" href="css/aegis.css">
+<link rel="stylesheet" href="css/pages.css">
+</head>
+<body class="ds-root aegis page">
+<!--@HEADER rooms-->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5 9.5 17 19 7.5"/></symbol>
+  <symbol id="i-check-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.25"/><path d="m8.5 12.25 2.4 2.4 4.6-4.9"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 4.5 20.5 19h-17z"/><path d="M12 10v4M12 16.75v.01"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.25"/><path d="M12 11v5M12 8.25v.01"/></symbol>
+  <symbol id="i-minus" viewBox="0 0 24 24"><path d="M6 12h12"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 6v12M6 12h12"/></symbol>
+  <symbol id="i-chev-left" viewBox="0 0 24 24"><path d="m14.5 6-6 6 6 6"/></symbol>
+  <symbol id="i-chev-right" viewBox="0 0 24 24"><path d="m9.5 6 6 6-6 6"/></symbol>
+</svg>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="hdr" id="hdr">
+  <div class="wrap hdr__in">
+    <a class="wordmark" href="index.html" aria-label="Aegis, home">AEGIS</a>
+    <nav class="nav" aria-label="Main">
+      <a href="rooms.html" aria-current="page">Rooms</a>
+      <a href="dining.html">Dining</a>
+      <a href="spa.html">Spa</a>
+      <a href="stay.html">My stay</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <a class="ds-button ds-button--primary hdr__cta" href="book.html">Book a stay</a>
+    <button class="icon-btn menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mmenu"><svg class="ds-icon" aria-hidden="true"><use href="#i-menu"/></svg></button>
+  </div>
+</header>
+
+<div class="mmenu" id="mmenu" role="dialog" aria-modal="true" aria-label="Menu" hidden>
+  <div class="mmenu__top">
+    <a class="wordmark" href="index.html">AEGIS</a>
+    <button class="icon-btn" type="button" aria-label="Close menu" data-close-menu><svg class="ds-icon" aria-hidden="true"><use href="#i-x"/></svg></button>
+  </div>
+  <nav class="mmenu__main" aria-label="Main">
+    <a href="rooms.html" aria-current="page">Rooms</a>
+    <a href="dining.html">Dining</a>
+    <a href="spa.html">Spa</a>
+    <a href="stay.html">My stay</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+  <div class="cta-row on-dark">
+    <a class="ds-button ds-button--primary ds-button--lg" href="book.html">Book a stay</a>
+  </div>
+</div>
+<!--/@HEADER-->
+
+<main id="main" class="page-main">
+  <div class="wrap g12 rooms-page">
+    <h1 class="page-title">Rooms and suites</h1>
+
+    <form class="filters" id="filters" aria-label="Filter rooms" novalidate>
+      <div class="ds-field">
+        <span class="ds-field__label" id="f-guests-label">Guests</span>
+        <div class="stepper" role="group" aria-labelledby="f-guests-label" id="f-guests">
+          <button class="stepper__btn" type="button" aria-label="Fewer guests"><svg class="ds-icon" aria-hidden="true"><use href="#i-minus"/></svg></button>
+          <output class="stepper__val" aria-live="polite">1</output>
+          <button class="stepper__btn" type="button" aria-label="More guests"><svg class="ds-icon" aria-hidden="true"><use href="#i-plus"/></svg></button>
+          <span class="stepper__unit">adults</span>
+        </div>
+      </div>
+      <fieldset class="chips">
+        <legend class="ds-field__label">View</legend>
+        <label class="chip"><input type="radio" name="view" value="" checked><span>Any</span></label>
+        <label class="chip"><input type="radio" name="view" value="valley"><span>Valley</span></label>
+        <label class="chip"><input type="radio" name="view" value="cliffs"><span>Cliffs</span></label>
+        <label class="chip"><input type="radio" name="view" value="village"><span>Village</span></label>
+      </fieldset>
+      <div class="ds-field">
+        <label class="ds-field__label" for="f-max">Price a night</label>
+        <div class="ds-field__wrap ds-field__wrap--select">
+          <select class="ds-field__control" id="f-max">
+            <option value="">Any price</option>
+            <option value="250">Up to €250</option>
+            <option value="300">Up to €300</option>
+            <option value="400">Up to €400</option>
+            <option value="500">Up to €500</option>
+          </select>
+        </div>
+      </div>
+      <div class="filters__foot">
+        <p class="filters__count" id="f-count" role="status">6 rooms</p>
+        <button class="ds-button ds-button--tertiary" type="button" id="f-clear">Clear filters</button>
+      </div>
+    </form>
+
+    <div class="rooms-results">
+      <ul class="rcards" id="room-list"></ul>
+      <div class="empty" id="room-empty" hidden>
+        <h2>No rooms match</h2>
+        <button class="ds-button ds-button--secondary" type="button" data-clear>Clear filters</button>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!--@FOOTER rooms-->
+<footer class="ftr">
+  <div class="wrap g12">
+    <a class="wordmark" href="index.html">AEGIS</a>
+    <div class="ftr__col">
+      <h3>Stay</h3>
+      <a href="rooms.html">Rooms and suites</a>
+      <a href="book.html">Book a stay</a>
+      <a href="stay.html">My stay</a>
+    </div>
+    <div class="ftr__col">
+      <h3>Hotel</h3>
+      <a href="dining.html">Dining</a>
+      <a href="spa.html">Spa and experiences</a>
+      <a href="contact.html">Contact and directions</a>
+    </div>
+    <div class="ftr__col">
+      <h3>The day</h3>
+      <a href="index.html#arrival">Arrival</a>
+      <a href="index.html#bar">The bar</a>
+      <a href="index.html#morning">Morning</a>
+    </div>
+    <p class="ftr__credit">Photography by <a href="https://commons.wikimedia.org/wiki/User:Bybbisch94">Bybbisch94</a> via Wikimedia Commons, licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>; cropped and resized. <a class="nowrap" href="legal.html#credits">Full photo credits</a></p>
+    <p class="ftr__meta">© 2026 Aegis</p>
+    <div class="ftr__legal">
+      <a href="legal.html#privacy">Privacy policy</a>
+      <a href="legal.html#terms">Booking terms</a>
+      <button class="ftr__reset" type="button" data-reset>Reset demo data</button>
+    </div>
+  </div>
+</footer>
+<!--/@FOOTER-->
+
+<script src="js/data.js" defer></script>
+<script src="js/site.js" defer></script>
+<script src="js/rooms.js" defer></script>
+</body>
+</html>

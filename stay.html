@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>My stay at Aegis</title>
+<meta name="description" content="Find your Aegis booking with its reference and surname, then change dates or cancel.">
+<meta name="theme-color" content="#141d2b">
+<script>document.documentElement.classList.add('js');setTimeout(function(){if(!window.__aegis)document.documentElement.classList.remove('js');},3000);</script>
+<link rel="preload" href="fonts/fraunces/Fraunces.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="stylesheet" href="fonts/fonts.css">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/brand.css">
+<link rel="stylesheet" href="css/aegis.css">
+<link rel="stylesheet" href="css/pages.css">
+</head>
+<body class="ds-root aegis page">
+<!--@HEADER stay-->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5 9.5 17 19 7.5"/></symbol>
+  <symbol id="i-check-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.25"/><path d="m8.5 12.25 2.4 2.4 4.6-4.9"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 4.5 20.5 19h-17z"/><path d="M12 10v4M12 16.75v.01"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.25"/><path d="M12 11v5M12 8.25v.01"/></symbol>
+  <symbol id="i-minus" viewBox="0 0 24 24"><path d="M6 12h12"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 6v12M6 12h12"/></symbol>
+  <symbol id="i-chev-left" viewBox="0 0 24 24"><path d="m14.5 6-6 6 6 6"/></symbol>
+  <symbol id="i-chev-right" viewBox="0 0 24 24"><path d="m9.5 6 6 6-6 6"/></symbol>
+</svg>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="hdr" id="hdr">
+  <div class="wrap hdr__in">
+    <a class="wordmark" href="index.html" aria-label="Aegis, home">AEGIS</a>
+    <nav class="nav" aria-label="Main">
+      <a href="rooms.html">Rooms</a>
+      <a href="dining.html">Dining</a>
+      <a href="spa.html">Spa</a>
+      <a href="stay.html" aria-current="page">My stay</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <a class="ds-button ds-button--primary hdr__cta" href="book.html">Book a stay</a>
+    <button class="icon-btn menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mmenu"><svg class="ds-icon" aria-hidden="true"><use href="#i-menu"/></svg></button>
+  </div>
+</header>
+
+<div class="mmenu" id="mmenu" role="dialog" aria-modal="true" aria-label="Menu" hidden>
+  <div class="mmenu__top">
+    <a class="wordmark" href="index.html">AEGIS</a>
+    <button class="icon-btn" type="button" aria-label="Close menu" data-close-menu><svg class="ds-icon" aria-hidden="true"><use href="#i-x"/></svg></button>
+  </div>
+  <nav class="mmenu__main" aria-label="Main">
+    <a href="rooms.html">Rooms</a>
+    <a href="dining.html">Dining</a>
+    <a href="spa.html">Spa</a>
+    <a href="stay.html" aria-current="page">My stay</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+  <div class="cta-row on-dark">
+    <a class="ds-button ds-button--primary ds-button--lg" href="book.html">Book a stay</a>
+  </div>
+</div>
+<!--/@HEADER-->
+
+<main id="main" class="page-main">
+  <div class="wrap g12 mystay">
+    <h1 class="page-title">My stay</h1>
+
+    <!-- Look up -->
+    <section class="mystay__lookup" id="lookup" aria-labelledby="t-lookup">
+      <div class="panel">
+        <form class="form" id="lookup-form" novalidate>
+          <h2 class="h2" id="t-lookup">Find your booking</h2>
+          <div class="row2">
+            <div class="ds-field">
+              <label class="ds-field__label" for="l-ref">Booking reference</label>
+              <input class="ds-field__control" id="l-ref" autocomplete="off" autocapitalize="characters" placeholder="AEG-12345" required aria-describedby="l-ref-err">
+              <p class="ds-field__error" id="l-ref-err" hidden><svg class="ds-icon ds-icon--sm" aria-hidden="true"><use href="#i-alert"/></svg><span>Enter your booking reference.</span></p>
+            </div>
+            <div class="ds-field">
+              <label class="ds-field__label" for="l-last">Surname</label>
+              <input class="ds-field__control" id="l-last" autocomplete="family-name" required aria-describedby="l-last-err">
+              <p class="ds-field__error" id="l-last-err" hidden><svg class="ds-icon ds-icon--sm" aria-hidden="true"><use href="#i-alert"/></svg><span>Enter the surname on the booking.</span></p>
+            </div>
+          </div>
+          <div class="ds-banner ds-banner--danger" role="alert" id="l-none" hidden>
+            <svg class="ds-icon" aria-hidden="true"><use href="#i-alert"/></svg>
+            <div>No booking matches that reference and surname. Check both, or <a href="contact.html">contact reception</a>. Bookings made in this browser tab are the only ones that can be found.</div>
+          </div>
+          <div class="form-actions">
+            <button class="ds-button ds-button--primary ds-button--lg" type="submit">Find booking</button>
+            <a class="ds-button ds-button--tertiary ds-button--lg" href="book.html">Book a stay</a>
+          </div>
+        </form>
+      </div>
+    </section>
+    <aside class="mystay__help" id="lookup-help" aria-label="Help">
+      <ul class="policies">
+        <li><b>Your reference</b><span>Starts with AEG and is shown when you book.</span></li>
+        <li><b>Reception</b><span>Open around the clock on +41 41 000 12 00.</span></li>
+        <li><b>Free cancellation</b><span>Until 72 hours before arrival.</span></li>
+      </ul>
+    </aside>
+
+    <!-- Booking -->
+    <section class="mystay__booking" id="booking" aria-labelledby="b-room" hidden tabindex="-1">
+      <div class="ds-banner ds-banner--success" role="status" id="b-status" hidden>
+        <svg class="ds-icon" aria-hidden="true"><use href="#i-check-circle"/></svg>
+        <div id="b-status-text"></div>
+      </div>
+      <div class="panel">
+        <div class="bk-head">
+          <h2 class="h2" id="b-room">Room</h2>
+          <span class="ds-badge" id="b-badge">Confirmed</span>
+        </div>
+        <dl class="summary" id="b-summary"></dl>
+        <div class="form-actions" id="b-actions">
+          <button class="ds-button ds-button--secondary ds-button--lg" type="button" id="b-change">Change dates</button>
+          <button class="ds-button ds-button--secondary ds-button--lg" type="button" id="b-cancel">Cancel booking</button>
+        </div>
+        <div class="form-actions" id="b-again" hidden>
+          <a class="ds-button ds-button--primary ds-button--lg" href="book.html">Book again</a>
+        </div>
+      </div>
+
+      <div class="panel change" id="change" hidden>
+        <h3 class="h3" id="t-change">Change dates</h3>
+        <div class="cal" id="change-cal" role="group" aria-labelledby="t-change"></div>
+        <dl class="summary" id="change-sum"></dl>
+        <p class="reason" id="change-reason"></p>
+        <div class="form-actions between">
+          <button class="ds-button ds-button--secondary ds-button--lg" type="button" id="change-close">Keep dates</button>
+          <button class="ds-button ds-button--primary ds-button--lg" type="button" id="change-save">Save new dates</button>
+        </div>
+      </div>
+    </section>
+
+    <aside class="mystay__side" id="booking-side" aria-label="Your plans" hidden>
+      <div class="stay-card">
+        <p class="stay-card__label" id="a-label">Arrival</p>
+        <p class="stay-card__main" id="a-main">Date</p>
+        <p class="stay-card__ctx" id="a-ctx">Check-in from 3pm</p>
+      </div>
+      <div class="plans">
+        <h2 class="h3">Your plans</h2>
+        <ul class="plans__list" id="plans"></ul>
+        <div class="cta-row">
+          <a class="ds-button ds-button--secondary" href="dining.html#reserve">Book a table</a>
+          <a class="ds-button ds-button--secondary" href="spa.html">Add a treatment</a>
+        </div>
+      </div>
+      <button class="ds-button ds-button--tertiary" type="button" id="b-other">Find another booking</button>
+    </aside>
+  </div>
+</main>
+
+<!--@FOOTER stay-->
+<footer class="ftr">
+  <div class="wrap g12">
+    <a class="wordmark" href="index.html">AEGIS</a>
+    <div class="ftr__col">
+      <h3>Stay</h3>
+      <a href="rooms.html">Rooms and suites</a>
+      <a href="book.html">Book a stay</a>
+      <a href="stay.html">My stay</a>
+    </div>
+    <div class="ftr__col">
+      <h3>Hotel</h3>
+      <a href="dining.html">Dining</a>
+      <a href="spa.html">Spa and experiences</a>
+      <a href="contact.html">Contact and directions</a>
+    </div>
+    <div class="ftr__col">
+      <h3>The day</h3>
+      <a href="index.html#arrival">Arrival</a>
+      <a href="index.html#bar">The bar</a>
+      <a href="index.html#morning">Morning</a>
+    </div>
+    <p class="ftr__credit">Photography by <a href="https://commons.wikimedia.org/wiki/User:Bybbisch94">Bybbisch94</a> via Wikimedia Commons, licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>; cropped and resized. <a class="nowrap" href="legal.html#credits">Full photo credits</a></p>
+    <p class="ftr__meta">© 2026 Aegis</p>
+    <div class="ftr__legal">
+      <a href="legal.html#privacy">Privacy policy</a>
+      <a href="legal.html#terms">Booking terms</a>
+      <button class="ftr__reset" type="button" data-reset>Reset demo data</button>
+    </div>
+  </div>
+</footer>
+<!--/@FOOTER-->
+
+<script src="js/data.js" defer></script>
+<script src="js/site.js" defer></script>
+<script src="js/stay.js" defer></script>
+</body>
+</html>

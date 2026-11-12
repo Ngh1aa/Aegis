@@ -44,7 +44,7 @@ Card nổi bật:       duy nhất "Your stay": nhãn, phòng, ngày + bảng gi
 - `check-brand.py`: 0 lỗi. `static-check.cjs`: 0 lỗi.
 - `taste-check.cjs` 390/768/1280/1440 px, sáng và tối, reflow 320 px, axe-core: **0 lỗi**. Cảnh báo còn lại: các đoạn
   kể chuyện dưới tiêu đề (là nội dung chính của trải nghiệm), chữ chạm mép trong lúc dải sảnh đang trượt.
-- `tests/flow.test.cjs`: **33/33 PASS** ở 1440 sáng, 390 tối và 1280 với giảm chuyển động.
+- `tests/flow.test.cjs` (bản một trang): **33/33 PASS** ở 1440 sáng, 390 tối và 1280 với giảm chuyển động.
 - Lỗi tìm thấy và đã sửa: nhãn ẩn của thanh thời gian bị tính là chữ cùng màu nền; vùng cuộn ngang của sảnh
   không truy cập được bằng bàn phím; link credit gãy dòng; hai ảnh lộ logo và nhãn địa danh.
 
@@ -70,6 +70,28 @@ Font Fraunces: SIL OFL 1.1. Token và component từ `design-system/` của uiux
 
 Tên Aegis, số phòng, loại phòng, giá, giờ mở bar, thuế du lịch, chính sách huỷ và các loại rượu là **giả định**.
 Đặt phòng chỉ mô phỏng (chờ 900 ms; mất mạng thì báo lỗi); không có booking engine hay email.
+
+## Bản nhiều trang (nhánh `feature/multipage-prototype`, 12/11/2026)
+
+Trang chủ giữ nguyên mạch kể; thêm `rooms`, `room?id=`, `book`, `stay` (My stay), `dining`, `spa`, `contact` vào nav
+chính (Rooms, Dining, Spa, My stay, Contact + nút Book a stay). Khối "Plan your stay" ở trang chủ thành planner: kiểm
+ngày, sức chứa, đêm kín phòng rồi chuyển sang `book.html?room=&in=&out=&guests=`; phần tên, email và xác nhận dời
+sang `book.html`.
+
+- **Dữ liệu:** seed ở `js/data.js`; dữ liệu người dùng chỉ ở `sessionStorage` (`aegis-demo-v1`). Đêm kín phòng: 24 và
+  31/12 cộng các đêm cách hôm nay 4, 5, 16, 17, 30 ngày; Tower Suite bận đêm +21 đến +23, Family Room +25, +26.
+  Giờ đặt bàn và spa "đã kín" tính theo ngày cho ổn định.
+- **Trung thực:** màn kết quả ghi "This is a prototype; no reservation was made and no card was charged" (và câu
+  tương tự cho bàn, spa, tin nhắn, đổi ngày, huỷ). Đây là yêu cầu của chủ repo, đứng trên dòng "không ghi chú bản
+  mẫu trên màn" của TASTE. Không có ô thẻ; thanh toán tại khách sạn.
+- **Xác nhận:** xác nhận đặt phòng, đổi ngày, huỷ và Reset đều qua hộp có Hủy, rồi màn/banner kết quả.
+- **Card nổi bật:** mỗi màn tối đa một ("Your stay", "Nightly rate" hoặc "Arrival"); bo 4 px đồng nhất.
+- **Ảnh:** chỉ dùng lại ảnh trong `img/alpine`. Đã tìm ảnh phòng nghỉ CC0 trên Openverse và Wikimedia Commons nhưng
+  chỉ thấy phòng khách sạn thành phố kiểu chuỗi, lệch tinh thần; nên chưa thêm ảnh mới. Thư viện ảnh mỗi phòng là
+  cảnh nhìn và không gian chung của khách sạn.
+- **Soát:** `taste-check` 390/768/1280/1440 sáng tối + reflow 320 và axe: 0 lỗi trên cả 10 trạng thái trang; cảnh báo
+  còn lại là đoạn kể chuyện ở trang chủ, đoạn văn ở legal và tiêu đề dài xuống dòng ở 390 px. `static-check` 0 lỗi.
+  `tests/flow.test.cjs` 73/73 PASS (33 kiểm trang chủ ở 3 cấu hình như bản trước, 40 kiểm luồng ở 1440 sáng và 390 tối).
 
 ## Còn lại
 

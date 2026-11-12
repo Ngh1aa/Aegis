@@ -1,13 +1,11 @@
-/* Aegis: "a day at the hotel" journey. Scroll-driven stages, time rail, booking. No libraries.
- * Prices, availability and sending are SIMULATED (no booking engine); see docs/DESIGN-NOTES.md.
- *   - nights of 24 and 31 December are fully booked (alternative dates are offered)
- *   - sending fails while the browser is offline and keeps everything the guest typed */
+/* Aegis home: "a day at the hotel" journey. Scroll-driven stages, time rail and the stay planner.
+ * The planner checks dates and capacity, then hands off to book.html with its values.
+ * Prices and availability come from js/data.js through js/site.js (window.Aegis).
+ *   - 24 and 31 December and a few seeded nights are fully booked; alternative dates are offered */
 (() => {
   'use strict';
-  window.__aegis = true;
-  const $ = (s, r = document) => r.querySelector(s);
-  const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const A = window.Aegis;
+  const { $, $$, reduceMotion } = A;
   const root = document.documentElement;
   if (!reduceMotion) root.classList.add('is-scrub');
 
@@ -66,8 +64,7 @@
   window.addEventListener('load', () => { measurePan(); update(); });
   measurePan(); update();
 
-  /* ---------- Where in the day: rail, header "now", hidden header on scroll down ---------- */
-  const hdr = $('#hdr');
+  /* ---------- Where in the day: rail and header "now" ---------- */
   const now = $('#now');
   const railLinks = $$('[data-rail]');
   const chapters = $$('[data-chapter]');
@@ -89,61 +86,14 @@
     }, { rootMargin: '-50% 0px -49% 0px' });
     chapters.forEach((c) => spy.observe(c));
   }
-  let lastY = window.scrollY;
-  window.addEventListener('scroll', () => {
-    const y = window.scrollY;
-    if (!hdr.contains(document.activeElement)) hdr.classList.toggle('is-hidden', y > lastY && y > 320);
-    lastY = y;
-  }, { passive: true });
-  hdr.addEventListener('focusin', () => hdr.classList.remove('is-hidden'));
 
-  /* ---------- Mobile menu ---------- */
-  const menu = $('#mmenu');
-  const menuBtn = $('.menu-btn');
-  const closeMenu = (restore = true) => {
-    menu.hidden = true; menuBtn.setAttribute('aria-expanded', 'false'); document.body.style.overflow = '';
-    if (restore) menuBtn.focus();
-  };
-  menuBtn.addEventListener('click', () => {
-    menu.hidden = false; menuBtn.setAttribute('aria-expanded', 'true'); document.body.style.overflow = 'hidden';
-    $('[data-close-menu]', menu).focus();
-  });
-  $('[data-close-menu]', menu).addEventListener('click', () => closeMenu());
-  $$('a', menu).forEach((a) => a.addEventListener('click', () => closeMenu(false)));
-  menu.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeMenu();
-    if (e.key === 'Tab') {
-      const f = $$('a, button', menu); const first = f[0], last = f[f.length - 1];
-      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
-      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
-    }
-  });
-
-  /* ---------- Booking ---------- */
-  const ROOMS = {
-    valley: { name: 'Valley Room', price: 280, sleeps: 2 },
-    balcony: { name: 'Balcony Room', price: 360, sleeps: 3 },
-    tower: { name: 'Tower Suite', price: 620, sleeps: 3 },
-  };
-  const TAX = 4; // tourist tax per adult per night
-  const DAY = 86400000;
-  const today = () => { const d = new Date(); d.setHours(0, 0, 0, 0); return d; };
-  const addDays = (d, n) => new Date(d.getFullYear(), d.getMonth(), d.getDate() + n);
-  const toISO = (d) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
-  const fromISO = (s) => { if (!/^\d{4}-\d{2}-\d{2}$/.test(s)) return null; const [y, m, d] = s.split('-').map(Number); return new Date(y, m - 1, d); };
-  const shortDate = (d) => d.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short' });
-  const longDate = (d) => d.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long' });
-  const eur = (n) => `€${Math.round(n).toLocaleString('en-GB')}`;
-  const plural = (n, one, many) => `${n} ${n === 1 ? one : many}`;
-  const nightsBetween = (a, b) => Math.round((b - a) / DAY);
-  const blocked = (d) => d.getMonth() === 11 && (d.getDate() === 24 || d.getDate() === 31);
-
+  /* ---------- Stay planner: checks dates and capacity, then hands off to book.html ---------- */
+  const { today, addDays, toISO, fromISO, shortDate, longDate, eur, plural } = A;
   const form = $('#stay-form');
-  const panel = form.closest('.panel');
-  const done = $('#stay-done');
-  const sIn = $('#s-in'), sOut = $('#s-out'), gName = $('#g-name'), gEmail = $('#g-email');
+  const sIn = $('#s-in'), sOut = $('#s-out');
   const guestsOut = $('#s-guests');
   const [minus, plus] = $$('.stepper__btn', form);
+  const submitBtn = $('button[type="submit"]', form);
   const room = () => $('input[name="room"]:checked', form).value;
   sIn.min = toISO(today()); sOut.min = toISO(addDays(today(), 1));
   sIn.value = toISO(addDays(today(), 7)); sOut.value = toISO(addDays(today(), 9));
@@ -161,18 +111,9 @@
 
   const stay = () => {
     const inD = fromISO(sIn.value), outD = fromISO(sOut.value);
-    const n = inD && outD && outD > inD ? nightsBetween(inD, outD) : 0;
-    const r = ROOMS[room()];
-    const sub = r.price * n;
-    const tax = TAX * guests() * n;
-    return { inD, outD, n, r, sub, tax, total: sub + tax };
+    const q = A.quote({ roomId: room(), inD, outD, guests: guests() });
+    return { inD, outD, n: q.n, r: q.r, sub: q.roomSum, tax: q.tax, total: q.total };
   };
-  const fill = (dl, list) => dl.replaceChildren(...list.flatMap(([k, v, c]) => {
-    const dt = Object.assign(document.createElement('dt'), { textContent: k });
-    const dd = Object.assign(document.createElement('dd'), { textContent: v });
-    if (c) dd.className = c;
-    return [dt, dd];
-  }));
 
   function updateCard() {
     const s = stay();
@@ -180,7 +121,7 @@
     const sum = $('#card-sum');
     if (!s.n) { $('#card-ctx').textContent = 'Choose dates to see the total'; sum.hidden = true; return; }
     $('#card-ctx').textContent = `${shortDate(s.inD)} to ${shortDate(s.outD)}, ${plural(guests(), 'adult', 'adults')}`;
-    fill(sum, [[`${plural(s.n, 'night', 'nights')} × ${eur(s.r.price)}`, eur(s.sub)], ['Tourist tax', eur(s.tax)], ['Total', eur(s.total), 'total']]);
+    A.fill(sum, [[`${plural(s.n, 'night', 'nights')} × ${eur(s.r.price)}`, eur(s.sub)], ['Tourist tax', eur(s.tax)], ['Total', eur(s.total), 'total']]);
     sum.hidden = false;
   }
   const setGuests = (v) => {
@@ -204,7 +145,6 @@
   $$('a[data-room]').forEach((a) => a.addEventListener('click', () => {
     const r = $(`input[name="room"][value="${a.dataset.room}"]`, form);
     if (r) { r.checked = true; updateCard(); }
-    if (!done.hidden) { done.hidden = true; form.hidden = false; }
     setTimeout(() => sIn.focus({ preventScroll: true }), reduceMotion ? 0 : 600);
   }));
 
@@ -217,72 +157,34 @@
     else setError(sIn, false);
     if (!s.outD) bad(sOut, 'Choose a check-out date.');
     else if (s.inD && s.outD <= s.inD) bad(sOut, 'Check-out must be after check-in.');
-    else if (s.inD && s.n > 14) bad(sOut, 'Book up to 14 nights online; email us for longer stays.');
+    else if (s.inD && s.n > A.D.maxNights) bad(sOut, `Book up to ${A.D.maxNights} nights online; email us for longer stays.`);
     else setError(sOut, false);
     if (!first && guests() > s.r.sleeps) bad(sOut, `The ${s.r.name} sleeps ${s.r.sleeps}. Choose another room or fewer guests.`);
     const box = $('#soldout');
     box.hidden = true;
     if (!first) {
-      const full = Array.from({ length: s.n }, (_, i) => addDays(s.inD, i)).filter(blocked);
+      const full = A.nightsOf(s.inD, s.outD).filter(A.soldOut);
       if (full.length) {
-        const altIn = addDays(full[full.length - 1], 1);
+        // first free run of the same length after the last sold-out night
+        let altIn = addDays(full[full.length - 1], 1);
+        while (A.blockedNight(altIn, addDays(altIn, s.n))) altIn = addDays(altIn, 1);
         const altOut = addDays(altIn, s.n);
         $('#soldout-text').textContent = `Aegis is fully booked on ${longDate(full[0])}.`;
         const alt = $('#soldout-alt');
         alt.textContent = `Try ${shortDate(altIn)} to ${shortDate(altOut)}`;
-        alt.onclick = () => { sIn.value = toISO(altIn); sOut.value = toISO(altOut); box.hidden = true; updateCard(); gName.focus(); };
+        alt.onclick = () => { sIn.value = toISO(altIn); sOut.value = toISO(altOut); box.hidden = true; updateCard(); submitBtn.focus(); };
         box.hidden = false;
         first = alt;
       }
     }
-    if (!gName.value.trim()) bad(gName, 'Enter the name the booking should be under.'); else setError(gName, false);
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(gEmail.value.trim())) bad(gEmail, 'Enter a valid email, for example name@gmail.com.'); else setError(gEmail, false);
     return first;
   };
 
-  const confirmBox = $('#confirm');
-  const rows = () => {
-    const s = stay();
-    return [['Room', s.r.name], ['Dates', `${shortDate(s.inD)} to ${shortDate(s.outD)}`], ['Guests', plural(guests(), 'adult', 'adults')], ['Total', eur(s.total), 'total']];
-  };
-  const submitBtn = $('button[type="submit"]', form);
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     const first = validate();
     if (first) { first.focus(); return; }
-    fill($('#confirm-body'), rows());
-    confirmBox.hidden = false;
-    document.body.style.overflow = 'hidden';
-    $('[data-confirm="ok"]', confirmBox).focus();
+    const q = new URLSearchParams({ room: room(), in: sIn.value, out: sOut.value, guests: String(guests()) });
+    location.href = `book.html?${q}`;
   });
-  const closeConfirm = () => { confirmBox.hidden = true; document.body.style.overflow = ''; submitBtn.focus(); };
-  $('[data-confirm="cancel"]', confirmBox).addEventListener('click', closeConfirm);
-  confirmBox.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeConfirm();
-    if (e.key === 'Tab') {
-      const f = $$('button', confirmBox); const first = f[0], last = f[f.length - 1];
-      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
-      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
-    }
-  });
-  $('[data-confirm="ok"]', confirmBox).addEventListener('click', async () => {
-    confirmBox.hidden = true; document.body.style.overflow = '';
-    const net = $('[data-net-error]', panel);
-    net.hidden = true;
-    const label = submitBtn.textContent;
-    submitBtn.textContent = 'Sending…'; submitBtn.disabled = true; submitBtn.setAttribute('aria-busy', 'true');
-    try {
-      await new Promise((res, rej) => setTimeout(() => (navigator.onLine ? res() : rej(new Error('offline'))), 900));
-      fill($('#done-summary'), [['Reference', `AEG-${Math.floor(10000 + Math.random() * 89999)}`], ...rows(), ['Name', gName.value.trim()]]);
-      form.hidden = true; done.hidden = false;
-      if (!reduceMotion) done.classList.add('step-enter');
-      done.focus();
-    } catch {
-      net.hidden = false;
-      submitBtn.focus();
-    } finally {
-      submitBtn.textContent = label; submitBtn.disabled = false; submitBtn.setAttribute('aria-busy', 'false');
-    }
-  });
-  $('#book-again').addEventListener('click', () => { done.hidden = true; form.hidden = false; sIn.focus(); });
 })();
