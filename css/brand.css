@@ -1,0 +1,145 @@
+/* Aegis: lớp thương hiệu. Nạp SAU tokens.css và components.css; chỉ ghi đè token ngữ nghĩa.
+ * Brand mức D (xem docs/BRAND-BRIEF.md): mọi giá trị là ĐỀ XUẤT, CHƯA DUYỆT.
+ * Soát: python design-system/scripts/check-brand.py <Aegis>/css/brand.css (chạy từ uiux-ai-workspace)
+ * Vật gốc: khung vòm cửa và tấm khiên; màu xanh đêm của sông và biển miền Trung lúc chạng vạng. */
+
+:root {
+  /* Xanh đêm: thương hiệu, 5–10% diện tích */
+  --brand-950: #0f1724;
+  --brand-900: #141d2b;
+  --brand-800: #1a2638;
+  --brand-700: #1f3049;
+  --brand-600: #2a3f5e;
+  --brand-100: #dfe5ee;
+  --brand-50: #ebeff4;
+
+  /* Nền trắng giấy trung tính, không phải nền kem */
+  --ds-surface-page: #f4f4f1;
+  --ds-surface-raised: #fbfbf9;
+  --ds-surface-sunken: #e7e7e3;
+  --ds-surface-brand-subtle: var(--brand-50);
+  --ds-surface-brand-strong: var(--brand-700);
+  --ds-text-primary: #18202b;
+  --ds-text-secondary: #4b5462;
+  --ds-text-tertiary: #59626f;
+  --ds-text-brand: var(--brand-700);
+  --ds-text-on-brand-strong: #ffffff;
+  --ds-border-subtle: #dadbdc;
+  --ds-border-control: #78808b;
+  --ds-action-disabled-bg: #e2e3e1;
+  --ds-action-disabled-text: #5c6470;
+  --ds-feedback-neutral-surface: #e9eaea;
+  --ds-feedback-neutral-border: #cdd0d4;
+  --ds-feedback-neutral-text: #313946;
+  --ds-feedback-neutral-icon: #4b5462;
+
+  /* Hành động */
+  --ds-action-primary-bg: var(--brand-700);
+  --ds-action-primary-bg-hover: var(--brand-800);
+  --ds-action-primary-bg-pressed: var(--brand-900);
+  --ds-action-primary-text: #ffffff;
+  --ds-action-secondary-bg: #fbfbf9;
+  --ds-action-secondary-bg-hover: #efefec;
+  --ds-action-secondary-bg-pressed: #e7e7e3;
+  --ds-action-secondary-text: #18202b;
+  --ds-action-secondary-border: #78808b;
+  --ds-action-tertiary-bg-hover: var(--brand-50);
+  --ds-action-tertiary-bg-pressed: var(--brand-100);
+  --ds-action-tertiary-text: var(--brand-700);
+  --ds-action-selected-bg: var(--brand-100);
+  --ds-action-selected-text: var(--brand-950);
+  --ds-action-selected-indicator: var(--brand-700);
+  --ds-border-focus: var(--brand-700);
+
+  /* Hình khối: card bo 4 px; nút và ô nhập bo tròn mềm như mép cửa vòm */
+  --ds-shape-card: 4px;
+  --ds-card-radius: 4px;
+  --ds-shape-control: 999px;
+  --ds-shape-sheet: 4px;
+  --ds-card-border: transparent;
+  --ds-elevation-raised: none;
+  --ds-size-control-sm: 44px;
+
+  /* Một họ chữ cho cả trang: Fraunces */
+  --ds-font-family-sans: "Fraunces", Georgia, "Times New Roman", serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --brand-strong-dark: #2a3f5e;
+    --brand-tint-dark: #c9d6ea;
+    --ds-surface-page: #0f141c;
+    --ds-surface-raised: #18202b;
+    --ds-surface-sunken: #212b38;
+    --ds-surface-brand-subtle: #1a2638;
+    --ds-surface-brand-strong: var(--brand-strong-dark);
+    --ds-text-primary: #eceef1;
+    --ds-text-secondary: #b0b8c3;
+    --ds-text-tertiary: #98a1ad;
+    --ds-text-brand: var(--brand-tint-dark);
+    --ds-text-on-brand-strong: #ffffff;
+    --ds-border-subtle: #2a3442;
+    --ds-border-control: #85909e;
+    --ds-action-primary-bg: var(--brand-tint-dark);
+    --ds-action-primary-bg-hover: #dae3f0;
+    --ds-action-primary-bg-pressed: #e8eef6;
+    --ds-action-primary-text: #0f1724;
+    --ds-action-secondary-bg: #18202b;
+    --ds-action-secondary-bg-hover: #212b38;
+    --ds-action-secondary-bg-pressed: #2a3442;
+    --ds-action-secondary-text: #eceef1;
+    --ds-action-secondary-border: #7c8796;
+    --ds-action-tertiary-bg-hover: #1a2638;
+    --ds-action-tertiary-bg-pressed: #24334a;
+    --ds-action-tertiary-text: var(--brand-tint-dark);
+    --ds-action-selected-bg: #24334a;
+    --ds-action-selected-text: #e3eaf5;
+    --ds-action-selected-indicator: var(--brand-tint-dark);
+    --ds-border-focus: var(--brand-tint-dark);
+    --ds-action-disabled-bg: #212b38;
+    --ds-action-disabled-text: #98a1ad;
+    --ds-feedback-neutral-surface: #212b38;
+    --ds-feedback-neutral-border: #374252;
+    --ds-feedback-neutral-text: #d6dbe2;
+    --ds-feedback-neutral-icon: #b0b8c3;
+  }
+}
+
+:root[data-theme="dark"] {
+  --brand-strong-dark: #2a3f5e;
+  --brand-tint-dark: #c9d6ea;
+  --ds-surface-page: #0f141c;
+  --ds-surface-raised: #18202b;
+  --ds-surface-sunken: #212b38;
+  --ds-surface-brand-subtle: #1a2638;
+  --ds-surface-brand-strong: var(--brand-strong-dark);
+  --ds-text-primary: #eceef1;
+  --ds-text-secondary: #b0b8c3;
+  --ds-text-tertiary: #98a1ad;
+  --ds-text-brand: var(--brand-tint-dark);
+  --ds-text-on-brand-strong: #ffffff;
+  --ds-border-subtle: #2a3442;
+  --ds-border-control: #85909e;
+  --ds-action-primary-bg: var(--brand-tint-dark);
+  --ds-action-primary-bg-hover: #dae3f0;
+  --ds-action-primary-bg-pressed: #e8eef6;
+  --ds-action-primary-text: #0f1724;
+  --ds-action-secondary-bg: #18202b;
+  --ds-action-secondary-bg-hover: #212b38;
+  --ds-action-secondary-bg-pressed: #2a3442;
+  --ds-action-secondary-text: #eceef1;
+  --ds-action-secondary-border: #7c8796;
+  --ds-action-tertiary-bg-hover: #1a2638;
+  --ds-action-tertiary-bg-pressed: #24334a;
+  --ds-action-tertiary-text: var(--brand-tint-dark);
+  --ds-action-selected-bg: #24334a;
+  --ds-action-selected-text: #e3eaf5;
+  --ds-action-selected-indicator: var(--brand-tint-dark);
+  --ds-border-focus: var(--brand-tint-dark);
+  --ds-action-disabled-bg: #212b38;
+  --ds-action-disabled-text: #98a1ad;
+  --ds-feedback-neutral-surface: #212b38;
+  --ds-feedback-neutral-border: #374252;
+  --ds-feedback-neutral-text: #d6dbe2;
+  --ds-feedback-neutral-icon: #b0b8c3;
+}

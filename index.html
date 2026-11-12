@@ -1,0 +1,449 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Aegis: hotels and restaurants on Vietnam’s central coast</title>
+<meta name="description" content="Three hotels and three restaurants in Hội An, Đà Nẵng and Huế. Book a stay or reserve a table.">
+<meta name="theme-color" content="#141d2b">
+<script>document.documentElement.classList.add('js');setTimeout(function(){if(!window.__aegis)document.documentElement.classList.remove('js');},3000);</script>
+<link rel="preload" href="fonts/fraunces/Fraunces.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="stylesheet" href="fonts/fonts.css">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/brand.css">
+<link rel="stylesheet" href="css/aegis.css">
+</head>
+<body class="ds-root aegis">
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+  <symbol id="i-check-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.25"/><path d="m8.5 12.25 2.4 2.4 4.6-4.9"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 4.5 20.5 19h-17z"/><path d="M12 10v4M12 16.75v.01"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5 9.5 17 19 7.5"/></symbol>
+  <symbol id="i-minus" viewBox="0 0 24 24"><path d="M6 12h12"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 6v12M6 12h12"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><rect x="7" y="3.5" width="10" height="17" rx="2.25"/><path d="M11 17.5h2"/></symbol>
+</svg>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="hdr" id="hdr">
+  <div class="wrap hdr__in">
+    <a class="wordmark" href="#top" aria-label="Aegis, back to top">AEGIS</a>
+    <nav class="nav" aria-label="Main">
+      <a href="#hotels">Hotels</a>
+      <a href="#restaurants">Restaurants</a>
+      <a href="#story">Our story</a>
+    </nav>
+    <div class="hdr__cta">
+      <a class="ds-button ds-button--secondary" href="#book" data-book="dine">Reserve a table</a>
+      <a class="ds-button ds-button--primary" href="#book" data-book="stay">Book a stay</a>
+    </div>
+    <button class="icon-btn menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mmenu"><svg class="ds-icon" aria-hidden="true"><use href="#i-menu"/></svg></button>
+  </div>
+</header>
+
+<div class="mmenu" id="mmenu" role="dialog" aria-modal="true" aria-label="Menu" hidden>
+  <div class="mmenu__top">
+    <a class="wordmark" href="#top">AEGIS</a>
+    <button class="icon-btn" type="button" aria-label="Close menu" data-close-menu><svg class="ds-icon" aria-hidden="true"><use href="#i-x"/></svg></button>
+  </div>
+  <nav aria-label="Mobile">
+    <a href="#hotels">Hotels</a>
+    <a href="#restaurants">Restaurants</a>
+    <a href="#story">Our story</a>
+    <a href="#book">Book</a>
+  </nav>
+  <div class="cta-row on-dark">
+    <a class="ds-button ds-button--primary ds-button--lg" href="#book" data-book="stay">Book a stay</a>
+    <a class="ds-button ds-button--secondary ds-button--lg" href="#book" data-book="dine">Reserve a table</a>
+  </div>
+</div>
+
+<main id="main">
+
+  <!-- Hero -->
+  <section class="hero on-dark" id="top" aria-labelledby="hero-title">
+    <img class="hero__img" src="img/hero.jpg" width="1024" height="684" alt="Hotel pool at dusk with parasols and loungers along the water’s edge" fetchpriority="high">
+    <div class="shade" aria-hidden="true"></div>
+    <div class="hero__body wrap">
+      <h1 class="hero__title" id="hero-title"><span class="line"><span>Places you’ll want</span></span><span class="line"><span>to return to.</span></span></h1>
+      <div class="hero__foot">
+        <p class="hero__lead">Three hotels and three restaurants on Vietnam’s central coast, each small enough to remember your name.</p>
+        <div class="cta-row">
+          <a class="ds-button ds-button--primary ds-button--lg" href="#book" data-book="stay">Book a stay</a>
+          <a class="ds-button ds-button--secondary ds-button--lg" href="#book" data-book="dine">Reserve a table</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Statement -->
+  <section class="statement" id="story" aria-labelledby="story-title">
+    <div class="wrap g12">
+      <h2 class="ds-visually-hidden" id="story-title">Our story</h2>
+      <p class="statement__text" data-ink>We take pleasure seriously. That means fewer rooms, longer breakfasts, the table by the window when you ask for it, and people who stay with us for years, guests and staff alike.</p>
+      <figure class="statement__img arch" data-reveal="img">
+        <img src="img/story-chef.jpg" width="1024" height="683" alt="A chef plating a dish of white asparagus, burrata and greens">
+      </figure>
+      <ul class="facts">
+        <li data-reveal><span class="facts__v" data-count="6">6</span><span class="facts__k">places across Hội An, Đà Nẵng and Huế</span></li>
+        <li data-reveal style="--d:120ms"><span class="facts__v" data-count="82">82</span><span class="facts__k">rooms and villas in total</span></li>
+        <li data-reveal style="--d:240ms"><span class="facts__v" data-count="2014">2014</span><span class="facts__k">the year we opened our first door</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Hotels -->
+  <section class="hotels" id="hotels" aria-labelledby="hotels-title">
+    <div class="wrap">
+      <h2 class="sec-title" id="hotels-title" data-reveal>Stay</h2>
+      <article class="hotel g12" aria-labelledby="h-riverside">
+        <figure class="hotel__img arch" data-reveal="img"><img src="img/hotel-riverside.jpg" width="1024" height="683" alt="Warm hotel room with a king bed, wooden floor and tall curtained windows"></figure>
+        <div class="hotel__copy" data-reveal>
+          <h3 id="h-riverside">Aegis Riverside</h3>
+          <p class="place">Hội An</p>
+          <p class="hotel__desc">Forty rooms on the Thu Bồn river, a short walk from the lanterns of the old town.</p>
+          <dl class="spec">
+            <dt>Rooms</dt><dd>40</dd>
+            <dt>From</dt><dd>VND 3,200,000 per night</dd>
+            <dt>Check-in</dt><dd>2pm</dd>
+          </dl>
+          <a class="ds-button ds-button--secondary" href="#book" data-book="stay" data-hotel="riverside">Check availability</a>
+        </div>
+      </article>
+      <article class="hotel hotel--flip g12" aria-labelledby="h-cliff">
+        <figure class="hotel__img arch" data-reveal="img"><img src="img/hotel-cliff.jpg" width="1024" height="683" alt="Pool villa at sunset with a private pool, loungers and a glass living room facing the sea"></figure>
+        <div class="hotel__copy" data-reveal>
+          <h3 id="h-cliff">Aegis Cliff</h3>
+          <p class="place">Sơn Trà, Đà Nẵng</p>
+          <p class="hotel__desc">Twenty-four pool villas cut into the hillside above the bay, with a path down to a private cove.</p>
+          <dl class="spec">
+            <dt>Villas</dt><dd>24</dd>
+            <dt>From</dt><dd>VND 7,800,000 per night</dd>
+            <dt>Check-in</dt><dd>3pm</dd>
+          </dl>
+          <a class="ds-button ds-button--secondary" href="#book" data-book="stay" data-hotel="cliff">Check availability</a>
+        </div>
+      </article>
+      <article class="hotel g12" aria-labelledby="h-house">
+        <figure class="hotel__img arch" data-reveal="img"><img src="img/hotel-house.jpg" width="1024" height="683" alt="Hotel lobby lit by warm lamps, with patterned armchairs and a reception desk"></figure>
+        <div class="hotel__copy" data-reveal>
+          <h3 id="h-house">Aegis House</h3>
+          <p class="place">Huế</p>
+          <p class="hotel__desc">A restored 1930s townhouse with eighteen rooms around a planted courtyard.</p>
+          <dl class="spec">
+            <dt>Rooms</dt><dd>18</dd>
+            <dt>From</dt><dd>VND 2,400,000 per night</dd>
+            <dt>Check-in</dt><dd>2pm</dd>
+          </dl>
+          <a class="ds-button ds-button--secondary" href="#book" data-book="stay" data-hotel="house">Check availability</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Restaurants -->
+  <section class="dine on-dark" id="restaurants" aria-labelledby="dine-title">
+    <div class="wrap">
+      <h2 class="sec-title" id="dine-title" data-reveal>Eat and drink</h2>
+      <ul class="venues">
+        <li class="venue" data-reveal>
+          <figure class="venue__img arch"><img src="img/dine-hearth.jpg" width="1024" height="543" alt="Dim restaurant dining room with dark wood tables and warm pendant lights"></figure>
+          <h3>Hearth</h3>
+          <p class="place">Aegis Riverside, Hội An</p>
+          <p class="venue__what">Wood-fire grill</p>
+          <p class="venue__hours">5:30pm–10:30pm, closed Mondays</p>
+          <a class="ds-button ds-button--secondary" href="#book" data-book="dine" data-restaurant="hearth">Reserve a table</a>
+        </li>
+        <li class="venue" data-reveal style="--d:120ms">
+          <figure class="venue__img arch"><img src="img/dine-tide.jpg" width="1024" height="683" alt="Seared fish with roasted vegetables on a white plate"></figure>
+          <h3>Tide</h3>
+          <p class="place">Aegis Cliff, Đà Nẵng</p>
+          <p class="venue__what">Seafood counter</p>
+          <p class="venue__hours">5:30pm–10pm daily</p>
+          <a class="ds-button ds-button--secondary" href="#book" data-book="dine" data-restaurant="tide">Reserve a table</a>
+        </li>
+        <li class="venue" data-reveal style="--d:240ms">
+          <figure class="venue__img arch"><img src="img/dine-lantern.jpg" width="1024" height="683" alt="Bartender in a white shirt finishing a frothy cocktail on the bar"></figure>
+          <h3>Lantern Room</h3>
+          <p class="place">Aegis House, Huế</p>
+          <p class="venue__what">Cocktail bar</p>
+          <p class="venue__hours">5:30pm–1am daily</p>
+          <a class="ds-button ds-button--secondary" href="#book" data-book="dine" data-restaurant="lantern">Reserve a table</a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Booking -->
+  <section class="book" id="book" aria-labelledby="book-title">
+    <div class="wrap g12">
+      <h2 class="sec-title book__title" id="book-title" data-reveal>Book with Aegis</h2>
+
+      <div class="book__main" data-reveal>
+        <div class="seg" role="tablist" aria-label="What would you like to book">
+          <button class="seg__tab" role="tab" id="tab-stay" aria-selected="true" aria-controls="panel-stay">Stay</button>
+          <button class="seg__tab" role="tab" id="tab-dine" aria-selected="false" aria-controls="panel-dine" tabindex="-1">Dine</button>
+        </div>
+
+        <!-- STAY -->
+        <div class="panel" role="tabpanel" id="panel-stay" aria-labelledby="tab-stay" aria-live="polite">
+          <div class="ds-banner ds-banner--danger" role="alert" data-net-error hidden>
+            <svg class="ds-icon" aria-hidden="true"><use href="#i-alert"/></svg>
+            <div>Couldn’t send because you’re offline. Check your connection and try again; your details are still here.</div>
+          </div>
+
+          <form class="form" id="stay-search" novalidate data-step="search">
+            <div class="ds-field">
+              <label class="ds-field__label" for="s-hotel">Hotel</label>
+              <div class="ds-field__wrap ds-field__wrap--select">
+                <select class="ds-field__control" id="s-hotel">
+                  <option value="riverside">Aegis Riverside, Hội An</option>
+                  <option value="cliff">Aegis Cliff, Đà Nẵng</option>
+                  <option value="house">Aegis House, Huế</option>
+                </select>
+              </div>
+            </div>
+            <div class="row2">
+              <div class="ds-field">
+                <label class="ds-field__label" for="s-in">Check-in</label>
+                <input class="ds-field__control" id="s-in" type="date" required aria-describedby="s-in-err">
+                <p class="ds-field__error" id="s-in-err" hidden><svg class="ds-icon ds-icon--sm" aria-hidden="true"><use href="#i-alert"/></svg><span></span></p>
+              </div>
+              <div class="ds-field">
+                <label class="ds-field__label" for="s-out">Check-out</label>
+                <input class="ds-field__control" id="s-out" type="date" required aria-describedby="s-out-err">
+                <p class="ds-field__error" id="s-out-err" hidden><svg class="ds-icon ds-icon--sm" aria-hidden="true"><use href="#i-alert"/></svg><span></span></p>
+              </div>
+            </div>
+            <div class="ds-field">
+              <span class="ds-field__label" id="s-guests-label">Guests</span>
+              <div class="stepper" role="group" aria-labelledby="s-guests-label">
+                <button class="stepper__btn" type="button" data-step-dir="-1" aria-label="Fewer guests"><svg class="ds-icon" aria-hidden="true"><use href="#i-minus"/></svg></button>
+                <output class="stepper__val" id="s-guests" aria-live="polite">2</output>
+                <button class="stepper__btn" type="button" data-step-dir="1" aria-label="More guests"><svg class="ds-icon" aria-hidden="true"><use href="#i-plus"/></svg></button>
+                <span class="stepper__unit">adults</span>
+              </div>
+              <p class="ds-field__hint" id="s-guests-max" hidden>Rooms sleep up to 4. For larger groups, call us on 0235 3 900 900.</p>
+            </div>
+            <div class="form-actions"><button class="ds-button ds-button--primary ds-button--lg" type="submit">Check availability</button></div>
+          </form>
+
+          <div class="step" id="stay-rooms" data-step="rooms" hidden>
+            <div class="step__head">
+              <p class="trip" id="stay-trip"></p>
+              <button class="ds-button ds-button--tertiary" type="button" data-stay-back="search">Change search</button>
+            </div>
+            <div class="ds-banner ds-banner--warning" id="stay-soldout" hidden>
+              <svg class="ds-icon" aria-hidden="true"><use href="#i-alert"/></svg>
+              <div><p id="stay-soldout-text"></p><button class="ds-button ds-button--secondary ds-button--sm" type="button" id="stay-alt">Try other dates</button></div>
+            </div>
+            <ul class="rooms" id="stay-room-list"></ul>
+          </div>
+
+          <form class="form step" id="stay-details" data-step="details" novalidate hidden>
+            <div class="ds-field">
+              <label class="ds-field__label" for="g-name">Full name</label>
+              <input class="ds-field__control" id="g-name" autocomplete="name" required aria-describedby="g-name-err">
+              <p class="ds-field__error" id="g-name-err" hidden><svg class="ds-icon ds-icon--sm" aria-hidden="true"><use href="#i-alert"/></svg>Enter the name the booking should be under.</p>
+            </div>
+            <div class="row2">
+              <div class="ds-field">
+                <label class="ds-field__label" for="g-email">Email</label>
+                <input class="ds-field__control" id="g-email" type="email" inputmode="email" autocomplete="email" required aria-describedby="g-email-err">
+                <p class="ds-field__error" id="g-email-err" hidden><svg class="ds-icon ds-icon--sm" aria-hidden="true"><use href="#i-alert"/></svg>Enter a valid email, for example name@gmail.com.</p>
+              </div>
+              <div class="ds-field">
+                <label class="ds-field__label" for="g-phone">Phone</label>
+                <input class="ds-field__control" id="g-phone" type="tel" inputmode="tel" autocomplete="tel" required aria-describedby="g-phone-err">
+                <p class="ds-field__error" id="g-phone-err" hidden><svg class="ds-icon ds-icon--sm" aria-hidden="true"><use href="#i-alert"/></svg>Enter a phone number with 9 to 12 digits.</p>
+              </div>
+            </div>
+            <div class="form-actions between">
+              <button class="ds-button ds-button--tertiary ds-button--lg" type="button" data-stay-back="rooms">Back to rooms</button>
+              <button class="ds-button ds-button--primary ds-button--lg" type="submit">Request booking</button>
+            </div>
+          </form>
+
+          <div class="done step" id="stay-done" data-step="done" hidden tabindex="-1">
+            <svg class="ds-icon done__icon" aria-hidden="true"><use href="#i-check-circle"/></svg>
+            <h3>Booking requested</h3>
+            <dl class="summary" id="stay-done-summary"></dl>
+            <p>We’ll email your confirmation within two hours. Nothing is charged until you arrive.</p>
+            <button class="ds-button ds-button--secondary" type="button" data-stay-back="search" data-reset>Book another stay</button>
+          </div>
+        </div>
+
+        <!-- DINE -->
+        <div class="panel" role="tabpanel" id="panel-dine" aria-labelledby="tab-dine" aria-live="polite" hidden>
+          <div class="ds-banner ds-banner--danger" role="alert" data-net-error hidden>
+            <svg class="ds-icon" aria-hidden="true"><use href="#i-alert"/></svg>
+            <div>Couldn’t send because you’re offline. Check your connection and try again; your details are still here.</div>
+          </div>
+
+          <form class="form" id="dine-search" novalidate data-step="search">
+            <div class="row2">
+              <div class="ds-field">
+                <label class="ds-field__label" for="d-rest">Restaurant</label>
+                <div class="ds-field__wrap ds-field__wrap--select">
+                  <select class="ds-field__control" id="d-rest">
+                    <option value="hearth">Hearth, Hội An</option>
+                    <option value="tide">Tide, Đà Nẵng</option>
+                    <option value="lantern">Lantern Room, Huế</option>
+                  </select>
+                </div>
+              </div>
+              <div class="ds-field">
+                <label class="ds-field__label" for="d-date">Date</label>
+                <input class="ds-field__control" id="d-date" type="date" required aria-describedby="d-date-err">
+                <p class="ds-field__error" id="d-date-err" hidden><svg class="ds-icon ds-icon--sm" aria-hidden="true"><use href="#i-alert"/></svg><span></span></p>
+              </div>
+            </div>
+            <div class="ds-field">
+              <span class="ds-field__label" id="d-party-label">Party size</span>
+              <div class="stepper" role="group" aria-labelledby="d-party-label">
+                <button class="stepper__btn" type="button" data-step-dir="-1" aria-label="Fewer people"><svg class="ds-icon" aria-hidden="true"><use href="#i-minus"/></svg></button>
+                <output class="stepper__val" id="d-party" aria-live="polite">2</output>
+                <button class="stepper__btn" type="button" data-step-dir="1" aria-label="More people"><svg class="ds-icon" aria-hidden="true"><use href="#i-plus"/></svg></button>
+                <span class="stepper__unit">people</span>
+              </div>
+              <p class="ds-field__hint" id="d-party-max" hidden>Tables seat up to 8. For larger groups, call us on 0235 3 900 900.</p>
+            </div>
+            <fieldset class="slots-wrap">
+              <legend class="ds-field__label">Time</legend>
+              <div class="ds-banner ds-banner--warning" id="d-closed" hidden>
+                <svg class="ds-icon" aria-hidden="true"><use href="#i-alert"/></svg>
+                <div><p id="d-closed-text"></p><button class="ds-button ds-button--secondary ds-button--sm" type="button" id="d-next-open">Try the next open day</button></div>
+              </div>
+              <div class="slots" id="d-slots"></div>
+              <p class="ds-field__error" id="d-slot-err" hidden><svg class="ds-icon ds-icon--sm" aria-hidden="true"><use href="#i-alert"/></svg>Choose a time to continue.</p>
+            </fieldset>
+            <div class="form-actions"><button class="ds-button ds-button--primary ds-button--lg" type="submit">Continue</button></div>
+          </form>
+
+          <form class="form step" id="dine-details" data-step="details" novalidate hidden>
+            <div class="step__head">
+              <p class="trip" id="dine-trip"></p>
+              <button class="ds-button ds-button--tertiary" type="button" data-dine-back="search">Change</button>
+            </div>
+            <div class="row2">
+              <div class="ds-field">
+                <label class="ds-field__label" for="r-name">Full name</label>
+                <input class="ds-field__control" id="r-name" autocomplete="name" required aria-describedby="r-name-err">
+                <p class="ds-field__error" id="r-name-err" hidden><svg class="ds-icon ds-icon--sm" aria-hidden="true"><use href="#i-alert"/></svg>Enter the name for the table.</p>
+              </div>
+              <div class="ds-field">
+                <label class="ds-field__label" for="r-phone">Phone</label>
+                <input class="ds-field__control" id="r-phone" type="tel" inputmode="tel" autocomplete="tel" required aria-describedby="r-phone-err">
+                <p class="ds-field__error" id="r-phone-err" hidden><svg class="ds-icon ds-icon--sm" aria-hidden="true"><use href="#i-alert"/></svg>Enter a phone number with 9 to 12 digits.</p>
+              </div>
+            </div>
+            <div class="ds-field">
+              <label class="ds-field__label" for="r-note">Occasion or dietary needs <span class="opt">(optional)</span></label>
+              <textarea class="ds-field__control" id="r-note" rows="3"></textarea>
+            </div>
+            <div class="form-actions between">
+              <button class="ds-button ds-button--tertiary ds-button--lg" type="button" data-dine-back="search">Back</button>
+              <button class="ds-button ds-button--primary ds-button--lg" type="submit">Reserve table</button>
+            </div>
+          </form>
+
+          <div class="done step" id="dine-done" data-step="done" hidden tabindex="-1">
+            <svg class="ds-icon done__icon" aria-hidden="true"><use href="#i-check-circle"/></svg>
+            <h3>Table reserved</h3>
+            <dl class="summary" id="dine-done-summary"></dl>
+            <p>We’ll text you a reminder on the morning of your booking.</p>
+            <button class="ds-button ds-button--secondary" type="button" data-dine-back="search" data-reset>Reserve another table</button>
+          </div>
+        </div>
+      </div>
+
+      <aside class="book__side" aria-label="Your booking" data-reveal style="--d:120ms">
+        <div class="stay-card" id="stay-card">
+          <p class="stay-card__label">Your stay</p>
+          <p class="stay-card__main" id="card-main">Aegis Riverside</p>
+          <p class="stay-card__ctx" id="card-ctx">Choose dates to see prices</p>
+          <dl class="stay-card__sum" id="card-sum" hidden></dl>
+        </div>
+        <ul class="policies" data-policies="stay">
+          <li><b>Prices include taxes</b><span>8% VAT and 5% service charge are added to every total.</span></li>
+          <li><b>Free cancellation</b><span>Until 48 hours before arrival.</span></li>
+          <li><b>Pay at the hotel</b><span>No card needed to request a room.</span></li>
+        </ul>
+        <ul class="policies" data-policies="dine" hidden>
+          <li><b>No deposit</b><span>Tables are free to reserve.</span></li>
+          <li><b>Held for 15 minutes</b><span>Call us if you are running late.</span></li>
+          <li><b>Groups of 9 or more</b><span>Call 0235 3 900 900 to arrange a set menu.</span></li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <section class="news on-dark" aria-labelledby="news-title">
+    <img class="news__img" src="img/final.jpg" width="1024" height="768" alt="" data-parallax>
+    <div class="shade" aria-hidden="true"></div>
+    <div class="wrap g12 news__in">
+      <h2 class="news__title" id="news-title" data-reveal>Hear about new places first.</h2>
+      <form class="news__form" id="news-form" novalidate data-reveal style="--d:120ms">
+        <div class="news__row">
+          <div class="ds-field">
+            <label class="ds-field__label" for="n-email">Email</label>
+            <input class="ds-field__control" id="n-email" type="email" inputmode="email" autocomplete="email" aria-describedby="n-email-err">
+          </div>
+          <button class="ds-button ds-button--primary ds-button--lg" type="submit">Subscribe</button>
+        </div>
+        <p class="ds-field__error" id="n-email-err" hidden><svg class="ds-icon ds-icon--sm" aria-hidden="true"><use href="#i-alert"/></svg>Enter a valid email, for example name@gmail.com.</p>
+        <label class="ds-check"><input type="checkbox" id="n-consent" aria-describedby="n-consent-err"><span class="ds-check__box" aria-hidden="true"><svg class="ds-icon" aria-hidden="true"><use href="#i-check"/></svg></span><span>I agree to receive up to two emails a month. <a href="legal.html#privacy">Privacy policy</a></span></label>
+        <p class="ds-field__error" id="n-consent-err" hidden><svg class="ds-icon ds-icon--sm" aria-hidden="true"><use href="#i-alert"/></svg>Tick the box so we can email you.</p>
+        <p class="ds-field__error" id="n-net-err" role="alert" hidden><svg class="ds-icon ds-icon--sm" aria-hidden="true"><use href="#i-alert"/></svg>Couldn’t subscribe because you’re offline. Try again when you’re connected.</p>
+        <p class="news__done" id="news-done" hidden tabindex="-1"><svg class="ds-icon" aria-hidden="true"><use href="#i-check-circle"/></svg><span>You’re on the list. The first letter arrives at the start of next month.</span></p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="ftr">
+  <div class="wrap g12">
+    <a class="wordmark" href="#top">AEGIS</a>
+    <div class="ftr__col">
+      <h3>Hotels</h3>
+      <a href="#hotels">Aegis Riverside, Hội An</a>
+      <a href="#hotels">Aegis Cliff, Đà Nẵng</a>
+      <a href="#hotels">Aegis House, Huế</a>
+    </div>
+    <div class="ftr__col">
+      <h3>Restaurants</h3>
+      <a href="#restaurants">Hearth</a>
+      <a href="#restaurants">Tide</a>
+      <a href="#restaurants">Lantern Room</a>
+    </div>
+    <div class="ftr__col">
+      <h3>Reservations</h3>
+      <a href="tel:02353900900"><svg class="ds-icon ds-icon--sm" aria-hidden="true"><use href="#i-phone"/></svg>0235 3 900 900</a>
+      <span>Daily, 7am–11pm</span>
+    </div>
+    <p class="ftr__meta">© 2026 Aegis Hospitality</p>
+    <div class="ftr__legal">
+      <a href="legal.html#privacy">Privacy policy</a>
+      <a href="legal.html#terms">Booking terms</a>
+    </div>
+  </div>
+</footer>
+
+<div class="dialog-scrim" id="confirm" hidden>
+  <div class="dialog" role="alertdialog" aria-modal="true" aria-labelledby="confirm-title" aria-describedby="confirm-body">
+    <h3 id="confirm-title">Request booking?</h3>
+    <dl class="summary" id="confirm-body"></dl>
+    <div class="form-actions between">
+      <button class="ds-button ds-button--secondary ds-button--lg" type="button" data-confirm="cancel">Cancel</button>
+      <button class="ds-button ds-button--primary ds-button--lg" type="button" data-confirm="ok">Request booking</button>
+    </div>
+  </div>
+</div>
+
+<script src="js/aegis.js" defer></script>
+</body>
+</html>

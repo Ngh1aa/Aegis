@@ -1,0 +1,418 @@
+/*
+ * Design system components. Consumes only semantic and component tokens from
+ * generated/tokens.css. validate.py rejects color literals and primitive palette vars here.
+ *
+ * Load order: fonts/fonts.css, generated/tokens.css, components/components.css.
+ * Naming: .ds-<component>, .ds-<component>--<variant>, .ds-<component>__<part>.
+ * State is expressed with native attributes (disabled, aria-pressed, aria-current,
+ * aria-invalid, aria-busy) so styling and accessibility cannot drift apart.
+ */
+
+/* ---------- Base ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+
+.ds-root {
+  margin: 0;
+  background: var(--ds-surface-page);
+  color: var(--ds-text-primary);
+  font-family: var(--ds-type-body-md-font-family);
+  font-size: var(--ds-type-body-md-font-size);
+  font-weight: var(--ds-type-body-md-font-weight);
+  line-height: var(--ds-type-body-md-line-height);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.ds-root :focus-visible {
+  outline: var(--ds-focus-ring-width) solid var(--ds-focus-ring-color);
+  outline-offset: var(--ds-focus-ring-offset);
+}
+
+.ds-visually-hidden {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+/* ---------- Typography roles ---------- */
+.ds-text-display, .ds-text-title-lg, .ds-text-title-md, .ds-text-title-sm,
+.ds-text-body-lg, .ds-text-body-md, .ds-text-body-sm,
+.ds-text-label-lg, .ds-text-label-md, .ds-text-label-sm { margin: 0; }
+
+.ds-text-display  { font: var(--ds-type-display-font-weight) var(--ds-type-display-font-size)/var(--ds-type-display-line-height) var(--ds-type-display-font-family); letter-spacing: var(--ds-type-display-letter-spacing); }
+.ds-text-title-lg { font: var(--ds-type-title-lg-font-weight) var(--ds-type-title-lg-font-size)/var(--ds-type-title-lg-line-height) var(--ds-type-title-lg-font-family); letter-spacing: var(--ds-type-title-lg-letter-spacing); }
+.ds-text-title-md { font: var(--ds-type-title-md-font-weight) var(--ds-type-title-md-font-size)/var(--ds-type-title-md-line-height) var(--ds-type-title-md-font-family); letter-spacing: var(--ds-type-title-md-letter-spacing); }
+.ds-text-title-sm { font: var(--ds-type-title-sm-font-weight) var(--ds-type-title-sm-font-size)/var(--ds-type-title-sm-line-height) var(--ds-type-title-sm-font-family); letter-spacing: var(--ds-type-title-sm-letter-spacing); }
+.ds-text-body-lg  { font: var(--ds-type-body-lg-font-weight) var(--ds-type-body-lg-font-size)/var(--ds-type-body-lg-line-height) var(--ds-type-body-lg-font-family); }
+.ds-text-body-md  { font: var(--ds-type-body-md-font-weight) var(--ds-type-body-md-font-size)/var(--ds-type-body-md-line-height) var(--ds-type-body-md-font-family); }
+.ds-text-body-sm  { font: var(--ds-type-body-sm-font-weight) var(--ds-type-body-sm-font-size)/var(--ds-type-body-sm-line-height) var(--ds-type-body-sm-font-family); }
+.ds-text-label-lg { font: var(--ds-type-label-lg-font-weight) var(--ds-type-label-lg-font-size)/var(--ds-type-label-lg-line-height) var(--ds-type-label-lg-font-family); }
+.ds-text-label-md { font: var(--ds-type-label-md-font-weight) var(--ds-type-label-md-font-size)/var(--ds-type-label-md-line-height) var(--ds-type-label-md-font-family); }
+.ds-text-label-sm { font: var(--ds-type-label-sm-font-weight) var(--ds-type-label-sm-font-size)/var(--ds-type-label-sm-line-height) var(--ds-type-label-sm-font-family); letter-spacing: var(--ds-type-label-sm-letter-spacing); text-transform: uppercase; }
+
+.ds-text-secondary { color: var(--ds-text-secondary); }
+.ds-text-tertiary  { color: var(--ds-text-tertiary); }
+.ds-text-brand     { color: var(--ds-text-brand); }
+.ds-tabular        { font-variant-numeric: tabular-nums; }
+
+/* ---------- Layout primitives ---------- */
+.ds-stack { display: flex; flex-direction: column; gap: var(--_gap, var(--ds-spacing-stack-md)); }
+.ds-stack--xs { --_gap: var(--ds-spacing-stack-xs); }
+.ds-stack--sm { --_gap: var(--ds-spacing-stack-sm); }
+.ds-stack--md { --_gap: var(--ds-spacing-stack-md); }
+.ds-stack--lg { --_gap: var(--ds-spacing-stack-lg); }
+.ds-stack--xl { --_gap: var(--ds-spacing-stack-xl); }
+.ds-cluster { display: flex; flex-wrap: wrap; align-items: center; gap: var(--_gap, var(--ds-spacing-inline-sm)); }
+.ds-split { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--ds-spacing-inline-sm) var(--ds-spacing-inline-md); }
+.ds-grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--ds-spacing-stack-sm); }
+
+/* ---------- Icon ---------- */
+.ds-icon { width: var(--ds-size-icon-md); height: var(--ds-size-icon-md); flex: none; fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+.ds-icon--sm { width: var(--ds-size-icon-sm); height: var(--ds-size-icon-sm); }
+.ds-icon--lg { width: var(--ds-size-icon-lg); height: var(--ds-size-icon-lg); }
+
+/* ---------- Button ----------
+ * Hierarchy: one primary per view; secondary for alternatives; tertiary for low-emphasis
+ * navigation-like actions; danger only for destructive commits.
+ */
+.ds-button {
+  --_bg: var(--ds-action-secondary-bg);
+  --_bg-hover: var(--ds-action-secondary-bg-hover);
+  --_bg-pressed: var(--ds-action-secondary-bg-pressed);
+  --_fg: var(--ds-action-secondary-text);
+  --_border: var(--ds-action-secondary-border);
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--ds-button-gap);
+  min-height: var(--ds-button-height-md); padding: 0 var(--ds-button-padding-x-md);
+  border: var(--ds-border-width-100) solid var(--_border); border-radius: var(--ds-button-radius);
+  background: var(--_bg); color: var(--_fg);
+  font: var(--ds-type-label-lg-font-weight) var(--ds-type-label-lg-font-size)/var(--ds-type-label-lg-line-height) var(--ds-type-label-lg-font-family);
+  text-decoration: none; white-space: nowrap; cursor: pointer; user-select: none;
+  transition: background-color var(--ds-motion-feedback) var(--ds-motion-ease), transform var(--ds-motion-feedback) var(--ds-motion-ease);
+}
+.ds-button:hover { background: var(--_bg-hover); }
+.ds-button:active { background: var(--_bg-pressed); transform: translateY(1px); }
+.ds-button--secondary { --_border: var(--ds-action-secondary-border); } /* explicit default */
+.ds-button--primary { --_bg: var(--ds-action-primary-bg); --_bg-hover: var(--ds-action-primary-bg-hover); --_bg-pressed: var(--ds-action-primary-bg-pressed); --_fg: var(--ds-action-primary-text); --_border: transparent; }
+.ds-button--danger  { --_bg: var(--ds-action-danger-bg); --_bg-hover: var(--ds-action-danger-bg-hover); --_bg-pressed: var(--ds-action-danger-bg-pressed); --_fg: var(--ds-action-danger-text); --_border: transparent; }
+.ds-button--tertiary { --_bg: transparent; --_bg-hover: var(--ds-action-tertiary-bg-hover); --_bg-pressed: var(--ds-action-tertiary-bg-pressed); --_fg: var(--ds-action-tertiary-text); --_border: transparent; padding-inline: var(--ds-button-padding-x-sm); }
+.ds-button--sm { min-height: var(--ds-button-height-sm); padding-inline: var(--ds-button-padding-x-sm); font-size: var(--ds-type-label-md-font-size); }
+.ds-button--lg { min-height: var(--ds-button-height-lg); padding-inline: var(--ds-button-padding-x-lg); }
+.ds-button--block { display: flex; width: 100%; }
+.ds-button:disabled, .ds-button[aria-disabled="true"] {
+  --_bg: var(--ds-action-disabled-bg); --_bg-hover: var(--ds-action-disabled-bg); --_bg-pressed: var(--ds-action-disabled-bg);
+  --_fg: var(--ds-action-disabled-text); --_border: transparent; cursor: not-allowed; transform: none;
+}
+.ds-button[aria-busy="true"] { cursor: progress; }
+.ds-button[aria-busy="true"]::before {
+  content: ""; width: 1em; height: 1em; border-radius: 50%;
+  border: var(--ds-border-width-200) solid currentColor; border-right-color: transparent;
+  animation: ds-spin 0.8s linear infinite;
+}
+@keyframes ds-spin { to { transform: rotate(360deg); } }
+
+.ds-icon-button {
+  display: inline-grid; place-items: center; width: var(--ds-size-control-md); height: var(--ds-size-control-md);
+  border: 0; border-radius: var(--ds-shape-pill); background: transparent; color: var(--ds-text-primary); cursor: pointer;
+}
+.ds-icon-button:hover { background: var(--ds-action-secondary-bg-hover); }
+
+.ds-link { color: var(--ds-text-brand); font-weight: var(--ds-font-weight-semibold); text-underline-offset: 0.2em; }
+
+/* ---------- Field ---------- */
+.ds-field { display: flex; flex-direction: column; gap: var(--ds-spacing-stack-xs); }
+.ds-field__label { font: var(--ds-type-label-md-font-weight) var(--ds-type-label-md-font-size)/var(--ds-type-label-md-line-height) var(--ds-type-label-md-font-family); color: var(--ds-text-primary); }
+.ds-field__hint { margin: 0; font-size: var(--ds-type-body-sm-font-size); line-height: var(--ds-type-body-sm-line-height); color: var(--ds-text-secondary); }
+.ds-field__error { display: flex; gap: var(--ds-spacing-inline-xs); align-items: flex-start; margin: 0; font-size: var(--ds-type-body-sm-font-size); line-height: var(--ds-type-body-sm-line-height); color: var(--ds-feedback-danger-text); font-weight: var(--ds-font-weight-medium); }
+.ds-field__error[hidden] { display: none; }
+.ds-field__wrap { position: relative; display: flex; align-items: center; }
+.ds-field__wrap > .ds-icon { position: absolute; left: var(--ds-spacing-inset-sm); color: var(--ds-text-secondary); pointer-events: none; }
+.ds-field__control {
+  width: 100%; min-height: var(--ds-field-height); padding: 0 var(--ds-spacing-inset-sm);
+  border: var(--ds-border-width-100) solid var(--ds-field-border); border-radius: var(--ds-field-radius);
+  background: var(--ds-field-bg); color: var(--ds-text-primary);
+  font: var(--ds-type-body-lg-font-weight) var(--ds-type-body-lg-font-size)/var(--ds-type-body-lg-line-height) var(--ds-type-body-lg-font-family);
+  appearance: none;
+}
+.ds-field__wrap > .ds-icon + .ds-field__control { padding-left: calc(var(--ds-spacing-inset-sm) + var(--ds-size-icon-md) + var(--ds-spacing-inline-sm)); }
+.ds-field__control::placeholder { color: var(--ds-text-tertiary); opacity: 1; }
+.ds-field__control:focus-visible { outline: var(--ds-focus-ring-width) solid var(--ds-focus-ring-color); outline-offset: 0; border-color: var(--ds-focus-ring-color); }
+.ds-field__control[aria-invalid="true"] { border-color: var(--ds-field-border-error); border-width: var(--ds-border-width-200); }
+.ds-field__control:disabled { background: var(--ds-action-disabled-bg); color: var(--ds-action-disabled-text); }
+.ds-field__wrap--select::after {
+  content: ""; position: absolute; right: var(--ds-spacing-inset-md); width: 8px; height: 8px;
+  border-right: var(--ds-border-width-200) solid var(--ds-text-secondary); border-bottom: var(--ds-border-width-200) solid var(--ds-text-secondary);
+  transform: translateY(-25%) rotate(45deg); pointer-events: none;
+}
+.ds-field__wrap--select .ds-field__control { padding-right: var(--ds-spacing-stack-xl); }
+
+/* ---------- Chip (filter) and segmented control ---------- */
+.ds-chip {
+  display: inline-flex; align-items: center; gap: var(--ds-spacing-inline-xs);
+  min-height: var(--ds-chip-height); padding: 0 var(--ds-spacing-inset-sm);
+  border: var(--ds-border-width-100) solid var(--ds-border-control); border-radius: var(--ds-chip-radius);
+  background: var(--ds-surface-raised); color: var(--ds-text-primary); cursor: pointer;
+  font: var(--ds-type-label-md-font-weight) var(--ds-type-label-md-font-size)/var(--ds-type-label-md-line-height) var(--ds-type-label-md-font-family);
+}
+.ds-chip:hover { background: var(--ds-action-secondary-bg-hover); }
+.ds-chip[aria-pressed="true"], .ds-chip[aria-selected="true"] {
+  background: var(--ds-action-selected-bg); color: var(--ds-action-selected-text); border-color: var(--ds-action-selected-indicator);
+}
+.ds-chip__count { font-variant-numeric: tabular-nums; color: inherit; opacity: 0.8; }
+
+/* ---------- Badge (status) ----------
+ * Status is never color-only: every badge carries an icon and a text label.
+ */
+.ds-badge {
+  --_bg: var(--ds-feedback-neutral-surface); --_fg: var(--ds-feedback-neutral-text); --_bd: var(--ds-feedback-neutral-border); --_ic: var(--ds-feedback-neutral-icon);
+  display: inline-flex; align-items: center; gap: var(--ds-spacing-inline-xs);
+  padding: var(--ds-space-50) var(--ds-badge-padding-x); border: var(--ds-border-width-100) solid var(--_bd); border-radius: var(--ds-badge-radius);
+  background: var(--_bg); color: var(--_fg); white-space: nowrap;
+  font: var(--ds-type-label-md-font-weight) var(--ds-type-body-sm-font-size)/var(--ds-type-label-md-line-height) var(--ds-type-label-md-font-family);
+}
+.ds-badge .ds-icon { color: var(--_ic); width: var(--ds-size-icon-sm); height: var(--ds-size-icon-sm); stroke-width: 2; }
+.ds-badge--neutral { --_bg: var(--ds-feedback-neutral-surface); --_fg: var(--ds-feedback-neutral-text); --_bd: var(--ds-feedback-neutral-border); --_ic: var(--ds-feedback-neutral-icon); }
+.ds-badge--success { --_bg: var(--ds-feedback-success-surface); --_fg: var(--ds-feedback-success-text); --_bd: var(--ds-feedback-success-border); --_ic: var(--ds-feedback-success-icon); }
+.ds-badge--warning { --_bg: var(--ds-feedback-warning-surface); --_fg: var(--ds-feedback-warning-text); --_bd: var(--ds-feedback-warning-border); --_ic: var(--ds-feedback-warning-icon); }
+.ds-badge--danger  { --_bg: var(--ds-feedback-danger-surface);  --_fg: var(--ds-feedback-danger-text);  --_bd: var(--ds-feedback-danger-border);  --_ic: var(--ds-feedback-danger-icon); }
+.ds-badge--info    { --_bg: var(--ds-feedback-info-surface);    --_fg: var(--ds-feedback-info-text);    --_bd: var(--ds-feedback-info-border);    --_ic: var(--ds-feedback-info-icon); }
+
+/* ---------- Card ---------- */
+.ds-card {
+  display: flex; flex-direction: column; gap: var(--ds-spacing-stack-sm);
+  padding: var(--ds-card-padding); border: var(--ds-border-width-100) solid var(--ds-card-border);
+  border-radius: var(--ds-card-radius); background: var(--ds-card-bg); box-shadow: var(--ds-elevation-raised);
+}
+.ds-card--brand { background: var(--ds-surface-brand-subtle); border-color: transparent; box-shadow: none; }
+.ds-card--flat { box-shadow: none; }
+.ds-card--interactive { color: inherit; text-decoration: none; cursor: pointer; transition: box-shadow var(--ds-motion-transition) var(--ds-motion-ease); }
+.ds-card--interactive:hover { box-shadow: var(--ds-elevation-floating); }
+.ds-card__divider { height: var(--ds-border-width-100); margin: var(--ds-spacing-stack-2xs) 0; border: 0; background: var(--ds-border-subtle); }
+
+/* ---------- List ---------- */
+.ds-list { margin: 0; padding: 0; list-style: none; border-radius: var(--ds-card-radius); background: var(--ds-surface-raised); border: var(--ds-border-width-100) solid var(--ds-border-subtle); }
+.ds-list-item { display: flex; align-items: center; gap: var(--ds-spacing-inline-md); min-height: var(--ds-size-control-lg); padding: var(--ds-spacing-inset-sm) var(--ds-spacing-inset-md); }
+.ds-list-item + .ds-list-item { border-top: var(--ds-border-width-100) solid var(--ds-border-subtle); }
+.ds-list-item__body { flex: 1; min-width: 0; }
+.ds-list-item__leading { display: grid; place-items: center; width: var(--ds-size-avatar-md); height: var(--ds-size-avatar-md); border-radius: var(--ds-shape-control); background: var(--ds-surface-brand-subtle); color: var(--ds-text-brand); flex: none; }
+.ds-list-item__trailing { color: var(--ds-text-secondary); flex: none; }
+a.ds-list-item, button.ds-list-item { width: 100%; border: 0; background: transparent; color: inherit; text-align: left; text-decoration: none; font: inherit; cursor: pointer; }
+a.ds-list-item:hover, button.ds-list-item:hover { background: var(--ds-action-secondary-bg-hover); }
+
+/* ---------- Avatar ---------- */
+.ds-avatar { display: inline-grid; place-items: center; width: var(--ds-size-avatar-md); height: var(--ds-size-avatar-md); border-radius: var(--ds-shape-pill); background: var(--ds-action-selected-bg); color: var(--ds-action-selected-text); font: var(--ds-type-label-md-font-weight) var(--ds-type-label-md-font-size)/1 var(--ds-type-label-md-font-family); flex: none; }
+
+/* ---------- App bar ---------- */
+.ds-app-bar { display: flex; align-items: center; gap: var(--ds-spacing-inline-sm); min-height: var(--ds-size-control-lg); padding: var(--ds-spacing-inset-sm) var(--ds-spacing-gutter); background: var(--ds-surface-page); }
+.ds-app-bar__title { flex: 1; min-width: 0; }
+
+/* ---------- Tab bar (bottom navigation) ----------
+ * Icon + label on every item (labels are never optional on mobile bottom navigation).
+ * Active item: aria-current="page", indicator pill behind the icon, label weight change.
+ */
+.ds-tab-bar {
+  display: grid; grid-template-columns: repeat(var(--_items, 3), 1fr);
+  min-height: var(--ds-tab-bar-height); padding: var(--ds-space-100) var(--ds-spacing-inline-sm) calc(var(--ds-space-100) + env(safe-area-inset-bottom, 0px));
+  background: var(--ds-tab-bar-bg); border-top: var(--ds-border-width-100) solid var(--ds-border-subtle);
+}
+.ds-tab-bar__item {
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--ds-space-50);
+  min-height: var(--ds-size-control-lg); border: 0; background: transparent; cursor: pointer;
+  color: var(--ds-tab-bar-item-inactive); text-decoration: none;
+  font: var(--ds-font-weight-medium) var(--ds-type-label-sm-font-size)/var(--ds-type-label-sm-line-height) var(--ds-type-label-sm-font-family);
+}
+.ds-tab-bar__icon { display: grid; place-items: center; width: 56px; height: 30px; border-radius: var(--ds-shape-pill); transition: background-color var(--ds-motion-transition) var(--ds-motion-ease); }
+.ds-tab-bar__item[aria-current="page"] { color: var(--ds-tab-bar-item-active); font-weight: var(--ds-font-weight-bold); }
+.ds-tab-bar__item[aria-current="page"] .ds-tab-bar__icon { background: var(--ds-tab-bar-indicator-bg); color: var(--ds-action-selected-text); }
+
+/* ---------- Banner and toast ---------- */
+.ds-banner {
+  --_bg: var(--ds-feedback-info-surface); --_fg: var(--ds-feedback-info-text); --_bd: var(--ds-feedback-info-border); --_ic: var(--ds-feedback-info-icon);
+  display: flex; gap: var(--ds-spacing-inline-md); align-items: flex-start; padding: var(--ds-spacing-inset-md);
+  border: var(--ds-border-width-100) solid var(--_bd); border-radius: var(--ds-shape-control); background: var(--_bg); color: var(--_fg);
+}
+.ds-banner > .ds-icon { color: var(--_ic); margin-top: var(--ds-space-50); }
+.ds-banner--success { --_bg: var(--ds-feedback-success-surface); --_fg: var(--ds-feedback-success-text); --_bd: var(--ds-feedback-success-border); --_ic: var(--ds-feedback-success-icon); }
+.ds-banner--warning { --_bg: var(--ds-feedback-warning-surface); --_fg: var(--ds-feedback-warning-text); --_bd: var(--ds-feedback-warning-border); --_ic: var(--ds-feedback-warning-icon); }
+.ds-banner--danger  { --_bg: var(--ds-feedback-danger-surface);  --_fg: var(--ds-feedback-danger-text);  --_bd: var(--ds-feedback-danger-border);  --_ic: var(--ds-feedback-danger-icon); }
+.ds-banner[hidden] { display: none; }
+.ds-toast {
+  display: flex; gap: var(--ds-spacing-inline-sm); align-items: center; padding: var(--ds-spacing-inset-sm) var(--ds-spacing-inset-md);
+  border-radius: var(--ds-shape-control); background: var(--ds-surface-inverse); color: var(--ds-text-on-inverse); box-shadow: var(--ds-elevation-overlay);
+}
+.ds-toast[hidden] { display: none; }
+
+/* ---------- Empty state ---------- */
+.ds-empty { display: flex; flex-direction: column; align-items: center; gap: var(--ds-spacing-stack-sm); padding: var(--ds-spacing-stack-xl) var(--ds-spacing-inset-md); text-align: center; color: var(--ds-text-secondary); }
+.ds-empty__icon { display: grid; place-items: center; width: var(--ds-size-control-lg); height: var(--ds-size-control-lg); border-radius: var(--ds-shape-pill); background: var(--ds-surface-sunken); color: var(--ds-text-secondary); }
+.ds-empty[hidden] { display: none; }
+
+/* ---------- Segmented control (v0.2) ----------
+ * Switches between views of the same content. Not navigation. Buttons carry aria-pressed.
+ */
+.ds-segmented {
+  display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: var(--ds-space-50);
+  padding: var(--ds-space-50); border-radius: var(--ds-shape-control); background: var(--ds-surface-sunken);
+}
+.ds-segmented__item {
+  min-height: var(--ds-size-control-sm); padding: 0 var(--ds-spacing-inset-sm); border: 0; border-radius: calc(var(--ds-shape-control) - var(--ds-space-50));
+  background: transparent; color: var(--ds-text-secondary); cursor: pointer;
+  font: var(--ds-font-weight-medium) var(--ds-type-label-md-font-size)/var(--ds-type-label-md-line-height) var(--ds-type-label-md-font-family);
+  transition: background-color var(--ds-motion-transition) var(--ds-motion-ease), color var(--ds-motion-transition) var(--ds-motion-ease);
+}
+.ds-segmented__item:hover { color: var(--ds-text-primary); }
+.ds-segmented__item[aria-pressed="true"] { background: var(--ds-surface-raised); color: var(--ds-text-primary); font-weight: var(--ds-font-weight-semibold); box-shadow: var(--ds-elevation-raised); }
+
+/* ---------- Switch (v0.2) ----------
+ * Native checkbox with role="switch"; applies immediately, no Save needed.
+ */
+.ds-switch { position: relative; display: inline-flex; flex: none; width: 52px; height: 32px; }
+.ds-switch input { appearance: none; margin: 0; width: 100%; height: 100%; border: var(--ds-border-width-200) solid var(--ds-border-control); border-radius: var(--ds-shape-pill); background: var(--ds-surface-sunken); cursor: pointer; transition: background-color var(--ds-motion-transition) var(--ds-motion-ease), border-color var(--ds-motion-transition) var(--ds-motion-ease); }
+/* The thumb is a sibling element, not ::after on the input: Firefox does not render pseudo-elements on inputs. */
+.ds-switch__thumb { position: absolute; top: 6px; left: 6px; width: 20px; height: 20px; border-radius: var(--ds-shape-pill); background: var(--ds-border-control); pointer-events: none; transition: transform var(--ds-motion-transition) var(--ds-motion-ease), background-color var(--ds-motion-transition) var(--ds-motion-ease); }
+.ds-switch input:checked { background: var(--ds-action-primary-bg); border-color: var(--ds-action-primary-bg); }
+.ds-switch input:checked + .ds-switch__thumb { transform: translateX(20px); background: var(--ds-action-primary-text); }
+.ds-switch input:disabled { cursor: not-allowed; border-color: var(--ds-action-disabled-bg); background: var(--ds-action-disabled-bg); }
+.ds-switch input:disabled + .ds-switch__thumb { background: var(--ds-action-disabled-text); }
+
+/* ---------- Progress (v0.2) ----------
+ * Determinate bar. Pair with a visible value; tone is never the only signal.
+ */
+.ds-progress { height: 8px; border-radius: var(--ds-shape-pill); background: var(--ds-surface-sunken); overflow: hidden; }
+.ds-progress__bar { --value: 0%; display: block; height: 100%; width: var(--value); border-radius: inherit; background: var(--ds-action-primary-bg); transition: width var(--ds-duration-slow) var(--ds-easing-standard); }
+.ds-progress--warning .ds-progress__bar { background: var(--ds-feedback-warning-icon); }
+.ds-progress--danger .ds-progress__bar { background: var(--ds-feedback-danger-icon); }
+
+/* ---------- Skeleton (v0.2) ----------
+ * Loading placeholder that matches the final layout. Decorative: hide from assistive tech and
+ * announce loading on the container with aria-busy.
+ */
+.ds-skeleton { display: block; height: 1em; border-radius: var(--ds-radius-100); background: var(--ds-surface-sunken); animation: ds-skeleton-pulse 1.4s var(--ds-easing-standard) infinite alternate; }
+.ds-skeleton--circle { border-radius: var(--ds-shape-pill); }
+@keyframes ds-skeleton-pulse { from { opacity: 1; } to { opacity: 0.45; } }
+
+/* ---------- Sheet (v0.2) ----------
+ * Bottom sheet for a focused sub-task. Pair with .ds-scrim behind it; dismiss by grabber drag,
+ * explicit close and Esc.
+ */
+.ds-scrim { position: absolute; inset: 0; background: var(--ds-surface-scrim); opacity: 0.5; }
+.ds-sheet {
+  position: relative; display: flex; flex-direction: column; gap: var(--ds-spacing-stack-md);
+  padding: var(--ds-spacing-stack-xs) var(--ds-spacing-inset-lg) calc(var(--ds-spacing-stack-lg) + env(safe-area-inset-bottom, 0px));
+  border-radius: var(--ds-shape-sheet) var(--ds-shape-sheet) 0 0; background: var(--ds-surface-raised); color: var(--ds-text-primary); box-shadow: var(--ds-elevation-overlay);
+}
+.ds-sheet__grabber { align-self: center; width: 36px; height: 5px; border-radius: var(--ds-shape-pill); background: var(--ds-border-control); }
+.ds-sheet__header { display: flex; align-items: center; justify-content: space-between; gap: var(--ds-spacing-inline-md); }
+
+/* ---------- Section header (v0.2) ---------- */
+.ds-section-header { display: flex; align-items: baseline; justify-content: space-between; gap: var(--ds-spacing-inline-md); }
+
+/* ---------- Checkbox and radio (v0.3) ----------
+ * Native input kept in the accessibility tree; the visible box is a sibling span so every
+ * browser renders it (Firefox draws no pseudo-elements on inputs). Label is always clickable text.
+ */
+.ds-check { position: relative; display: inline-flex; align-items: flex-start; gap: var(--ds-spacing-inline-sm); min-height: var(--ds-size-control-sm); padding-block: var(--ds-space-50); cursor: pointer; }
+.ds-check input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: inherit; }
+.ds-check__box {
+  display: inline-grid; place-items: center; flex: none; width: 22px; height: 22px; margin-top: 1px;
+  border: var(--ds-border-width-200) solid var(--ds-border-control); border-radius: var(--ds-radius-100);
+  background: var(--ds-surface-raised); color: var(--ds-action-primary-text);
+  transition: background-color var(--ds-motion-feedback) var(--ds-motion-ease), border-color var(--ds-motion-feedback) var(--ds-motion-ease);
+}
+.ds-check__box .ds-icon { width: 16px; height: 16px; stroke-width: 2.5; opacity: 0; }
+.ds-check--radio .ds-check__box { border-radius: var(--ds-shape-pill); }
+.ds-check--radio .ds-check__box::after { content: ""; width: 10px; height: 10px; border-radius: var(--ds-shape-pill); background: var(--ds-action-primary-text); opacity: 0; }
+.ds-check input:checked + .ds-check__box { background: var(--ds-action-primary-bg); border-color: var(--ds-action-primary-bg); }
+.ds-check input:checked + .ds-check__box .ds-icon, .ds-check--radio input:checked + .ds-check__box::after { opacity: 1; }
+.ds-check input:focus-visible + .ds-check__box { outline: var(--ds-focus-ring-width) solid var(--ds-focus-ring-color); outline-offset: var(--ds-focus-ring-offset); }
+.ds-check input[aria-invalid="true"] + .ds-check__box { border-color: var(--ds-field-border-error); }
+.ds-check input:disabled + .ds-check__box { border-color: var(--ds-action-disabled-bg); background: var(--ds-action-disabled-bg); }
+.ds-check:has(input:disabled) { cursor: not-allowed; color: var(--ds-action-disabled-text); }
+/* Reset bằng :where() (độ ưu tiên 0) để ghép được với .ds-card mà không mất padding của card. */
+:where(.ds-fieldset) { margin: 0; padding: 0; border: 0; }
+.ds-fieldset { display: flex; flex-direction: column; gap: var(--ds-spacing-stack-2xs); min-width: 0; }
+/* float: legend thành phần tử thường, nằm trong vùng nội dung thay vì trên viền */
+.ds-fieldset > legend { float: left; width: 100%; margin-bottom: var(--ds-spacing-stack-xs); padding: 0; font: var(--ds-type-label-md-font-weight) var(--ds-type-label-md-font-size)/var(--ds-type-label-md-line-height) var(--ds-type-label-md-font-family); }
+
+/* ---------- Tabs (v0.3) ----------
+ * Switch between panels of one page. role="tablist" / "tab" / "tabpanel"; arrow keys move focus.
+ * Not page navigation (use links with aria-current) and not a filter (use chips).
+ */
+.ds-tabs { display: flex; gap: var(--ds-spacing-inline-md); border-bottom: var(--ds-border-width-100) solid var(--ds-border-subtle); overflow-x: auto; scrollbar-width: none; }
+.ds-tabs__tab {
+  position: relative; flex: none; min-height: var(--ds-size-control-md); padding: 0 var(--ds-space-50); border: 0; background: transparent;
+  color: var(--ds-text-secondary); cursor: pointer; white-space: nowrap;
+  font: var(--ds-font-weight-medium) var(--ds-type-label-lg-font-size)/var(--ds-type-label-lg-line-height) var(--ds-type-label-lg-font-family);
+}
+.ds-tabs__tab:hover { color: var(--ds-text-primary); }
+.ds-tabs__tab[aria-selected="true"] { color: var(--ds-text-primary); font-weight: var(--ds-font-weight-semibold); }
+.ds-tabs__tab[aria-selected="true"]::after { content: ""; position: absolute; left: 0; right: 0; bottom: calc(-1 * var(--ds-border-width-100)); height: 3px; border-radius: var(--ds-shape-pill); background: var(--ds-action-selected-indicator); }
+.ds-tabs__panel { padding-top: var(--ds-spacing-stack-md); }
+.ds-tabs__panel[hidden] { display: none; }
+
+/* ---------- Dialog (v0.3) ----------
+ * Native <dialog> opened with showModal(): focus trap, Esc and inert background come from the
+ * browser. Title in .ds-dialog__title, referenced by aria-labelledby. One primary action, last.
+ */
+.ds-dialog {
+  width: min(100% - 2 * var(--ds-spacing-gutter), 480px); max-height: min(100% - 2 * var(--ds-spacing-gutter), 720px); padding: 0;
+  border: 0; border-radius: var(--ds-shape-sheet); background: var(--ds-surface-raised); color: var(--ds-text-primary); box-shadow: var(--ds-elevation-overlay);
+}
+.ds-dialog::backdrop { background: var(--ds-surface-scrim); opacity: 0.5; }
+.ds-dialog__body { display: flex; flex-direction: column; gap: var(--ds-spacing-stack-md); padding: var(--ds-spacing-inset-lg); }
+.ds-dialog__header { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--ds-spacing-inline-md); }
+.ds-dialog__actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: var(--ds-spacing-inline-sm); }
+.ds-dialog--static { position: relative; display: block; margin: 0; }
+
+/* ---------- Menu (v0.3) ----------
+ * Action list attached to a trigger button (aria-haspopup="menu", aria-expanded). Items are
+ * role="menuitem"; Esc closes and returns focus to the trigger. For choosing a value use a select.
+ */
+.ds-menu-anchor { position: relative; display: inline-block; }
+.ds-menu {
+  position: absolute; top: calc(100% + var(--ds-space-50)); left: 0; z-index: 10; min-width: 200px; margin: 0; padding: var(--ds-space-50);
+  list-style: none; border: var(--ds-border-width-100) solid var(--ds-border-subtle); border-radius: var(--ds-shape-control);
+  background: var(--ds-surface-raised); box-shadow: var(--ds-elevation-overlay);
+}
+.ds-menu[hidden] { display: none; }
+.ds-menu--end { left: auto; right: 0; }
+.ds-menu__item {
+  display: flex; align-items: center; gap: var(--ds-spacing-inline-sm); width: 100%; min-height: var(--ds-size-control-md); padding: 0 var(--ds-spacing-inset-sm);
+  border: 0; border-radius: calc(var(--ds-shape-control) - var(--ds-space-50)); background: transparent; color: var(--ds-text-primary);
+  text-align: left; text-decoration: none; cursor: pointer; font: inherit;
+}
+.ds-menu__item:hover, .ds-menu__item:focus-visible { background: var(--ds-action-secondary-bg-hover); }
+.ds-menu__item--danger { color: var(--ds-feedback-danger-text); }
+.ds-menu__divider { height: var(--ds-border-width-100); margin: var(--ds-space-50) 0; background: var(--ds-border-subtle); }
+
+/* ---------- Tooltip (v0.3) ----------
+ * Short supplementary label for pointer and keyboard users; shown on hover and focus-within.
+ * Never the only place for essential information (touch has no hover).
+ */
+.ds-tooltip-anchor { position: relative; display: inline-flex; }
+.ds-tooltip {
+  position: absolute; bottom: calc(100% + var(--ds-space-100)); left: 50%; z-index: 10; transform: translateX(-50%);
+  width: max-content; max-width: 240px; padding: var(--ds-space-50) var(--ds-spacing-inset-sm); border-radius: var(--ds-radius-100);
+  background: var(--ds-surface-inverse); color: var(--ds-text-on-inverse); pointer-events: none;
+  font: var(--ds-type-body-sm-font-weight) var(--ds-type-body-sm-font-size)/var(--ds-type-body-sm-line-height) var(--ds-type-body-sm-font-family);
+  display: none; /* ẩn thật sự: không chiếm chỗ, không làm trang tràn ngang trên màn hẹp */
+}
+.ds-tooltip-anchor:hover .ds-tooltip, .ds-tooltip-anchor:focus-within .ds-tooltip { display: block; }
+
+/* ---------- Table (v0.3) ----------
+ * Data table with a real <table>, <th scope>, caption. Numbers right-aligned in tabular figures.
+ * Wrap in .ds-table-wrap so narrow screens scroll the table, not the page.
+ */
+.ds-table-wrap:focus-visible { outline: var(--ds-focus-ring-width) solid var(--ds-focus-ring-color); outline-offset: var(--ds-focus-ring-offset); }
+.ds-table-wrap { overflow-x: auto; border: var(--ds-border-width-100) solid var(--ds-border-subtle); border-radius: var(--ds-card-radius); background: var(--ds-surface-raised); }
+.ds-table { width: 100%; border-collapse: collapse; font-size: var(--ds-type-body-md-font-size); line-height: var(--ds-type-body-md-line-height); }
+.ds-table caption { padding: var(--ds-spacing-inset-sm) var(--ds-spacing-inset-md); text-align: left; font: var(--ds-type-title-sm-font-weight) var(--ds-type-title-sm-font-size)/var(--ds-type-title-sm-line-height) var(--ds-type-title-sm-font-family); }
+.ds-table th, .ds-table td { padding: var(--ds-spacing-inset-sm) var(--ds-spacing-inset-md); text-align: left; vertical-align: top; }
+.ds-table thead th { border-bottom: var(--ds-border-width-100) solid var(--ds-border-subtle); color: var(--ds-text-secondary); white-space: nowrap; font: var(--ds-type-label-md-font-weight) var(--ds-type-label-md-font-size)/var(--ds-type-label-md-line-height) var(--ds-type-label-md-font-family); }
+.ds-table tbody tr + tr td, .ds-table tbody tr + tr th { border-top: var(--ds-border-width-100) solid var(--ds-border-subtle); }
+.ds-table tbody tr:hover { background: var(--ds-action-secondary-bg-hover); }
+.ds-table .ds-table__num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+/* ---------- Motion preference ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .ds-root *, .ds-root *::before, .ds-root *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
+  .ds-skeleton { animation: none; }
+}
