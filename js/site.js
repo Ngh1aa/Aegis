@@ -1,6 +1,7 @@
 /* Aegis shared layer for every page: helpers, availability and pricing, the sessionStorage store,
- * header and mobile menu, confirm dialog, toast, calendar and the footer "Reset demo data" control.
- * There is no server. Guest data lives only in sessionStorage (this tab), under STORE_KEY. */
+ * header and mobile menu, confirm dialog, toast, calendar and the hidden demo tools (?demo=1).
+ * There is no server. Guest data lives only in sessionStorage (this tab), under STORE_KEY; an empty store
+ * starts with one seeded upcoming booking (D.seedBooking) so My stay can be opened straight away. */
 (() => {
   'use strict';
   window.__aegis = true;
@@ -48,9 +49,26 @@
   /* ---------- Store (sessionStorage only) ---------- */
   const STORE_KEY = 'aegis-demo-v1';
   const empty = () => ({ bookings: [], tables: [], spa: [], active: null, draft: null });
+  /* The seeded booking: three nights from the first free run at least 12 days out, so it is always upcoming. */
+  const seeded = () => {
+    const s = empty();
+    const x = D.seedBooking;
+    if (!x) return s;
+    let inD = addDays(today(), x.daysAhead);
+    for (let i = 0; i < 60 && blockedNight(inD, addDays(inD, x.nights), x.room); i++) inD = addDays(inD, 1);
+    const outD = addDays(inD, x.nights);
+    const q = quote({ roomId: x.room, inD, outD, guests: x.guests, extras: x.extras });
+    const made = addDays(today(), -x.bookedDaysAgo).toISOString();
+    s.bookings.push({
+      ref: x.ref, status: 'confirmed', created: made, room: x.room, in: toISO(inD), out: toISO(outD), guests: x.guests, extras: [...x.extras],
+      first: x.first, surname: x.surname, email: x.email, phone: x.phone, arrival: x.arrival, notes: x.notes,
+      total: q.total, history: [{ at: made, what: 'Booked' }],
+    });
+    return s;
+  };
   let memory = null; // used if sessionStorage is blocked
   const load = () => {
-    try { const raw = sessionStorage.getItem(STORE_KEY); return raw ? { ...empty(), ...JSON.parse(raw) } : empty(); } catch { return memory || empty(); }
+    try { const raw = sessionStorage.getItem(STORE_KEY); return raw ? { ...empty(), ...JSON.parse(raw) } : seeded(); } catch { return memory || seeded(); }
   };
   const save = (s) => { memory = s; try { sessionStorage.setItem(STORE_KEY, JSON.stringify(s)); } catch { /* memory only */ } };
   const update = (fn) => { const s = load(); fn(s); save(s); return s; };
@@ -70,11 +88,27 @@
     setActive: (ref) => update((s) => { s.active = ref; }),
     plansFor: (b) => { const s = load(); const mine = (x) => x.bookingRef === b.ref || norm(x.surname) === norm(b.surname); return { tables: s.tables.filter(mine), spa: s.spa.filter(mine) }; },
     counts: () => { const s = load(); return { bookings: s.bookings.length, tables: s.tables.length, spa: s.spa.length }; },
+    /* Most recently made booking that is still confirmed, for the My stay hint. */
+    recentBooking: () => load().bookings.filter((b) => b.status === 'confirmed').sort((a, c) => String(c.created).localeCompare(String(a.created)))[0] || null,
     reset: () => { memory = null; try { sessionStorage.removeItem(STORE_KEY); } catch { /* nothing stored */ } },
   };
 
-  /* Simulated network: resolves after a short wait, fails while the browser is offline. */
-  const send = () => new Promise((res, rej) => setTimeout(() => (navigator.onLine ? res() : rej(new Error('offline'))), 900));
+  /* Demo tools flag: ?demo=1 turns them on for this tab, ?demo=0 turns them off. */
+  const DEMO_KEY = 'aegis-demo-tools';
+  const FAIL_KEY = 'aegis-fail-next';
+  const ss = { get: (k) => { try { return sessionStorage.getItem(k); } catch { return null; } }, set: (k, v) => { try { if (v == null) sessionStorage.removeItem(k); else sessionStorage.setItem(k, v); } catch { /* ignore */ } } };
+  const demoParam = new URLSearchParams(location.search).get('demo');
+  if (demoParam === '1') ss.set(DEMO_KEY, '1');
+  if (demoParam === '0') { ss.set(DEMO_KEY, null); ss.set(FAIL_KEY, null); }
+  const demoOn = ss.get(DEMO_KEY) === '1';
+
+  /* Network stand-in: resolves after a short wait; fails while the browser is offline or when the
+   * demo tools asked for the next request to fail. */
+  const send = () => new Promise((res, rej) => setTimeout(() => {
+    if (ss.get(FAIL_KEY) === '1') { ss.set(FAIL_KEY, null); syncFail(); rej(new Error('failed')); return; }
+    if (navigator.onLine) res(); else rej(new Error('offline'));
+  }, 900));
+  let syncFail = () => {};
 
   /* ---------- Small DOM helpers ---------- */
   const fill = (dl, list) => dl.replaceChildren(...list.flatMap(([k, v, c]) => {
@@ -264,20 +298,36 @@
     menu.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); trapTab(menu, e); });
   }
 
-  /* ---------- Footer: reset demo data ---------- */
-  $$('[data-reset]').forEach((btn) => btn.addEventListener('click', async () => {
+  /* ---------- Demo tools (only with ?demo=1): reset data, fail the next request ---------- */
+  const resetData = async () => {
     const c = store.counts();
     const ok = await confirmDialog({
       title: 'Reset demo data?',
       rows: [['Bookings', String(c.bookings)], ['Table reservations', String(c.tables)], ['Spa and experiences', String(c.spa)]],
-      text: 'Everything saved in this browser tab is removed.',
+      text: 'Everything saved in this browser tab is removed and the starting booking comes back.',
       ok: 'Reset data', danger: true,
     });
     if (!ok) return;
     store.reset();
-    try { sessionStorage.setItem(FLASH, 'Demo data reset. Nothing is saved in this tab now.'); } catch { /* ignore */ }
+    try { sessionStorage.setItem(FLASH, 'Demo data reset.'); } catch { /* ignore */ }
     location.reload();
-  }));
+  };
+  if (demoOn) {
+    const box = document.createElement('details');
+    box.className = 'demo-tools';
+    box.id = 'demo-tools';
+    box.innerHTML = `<summary>Demo tools</summary><div class="demo-tools__body">
+      <button type="button" class="demo-tools__btn" data-reset>Reset demo data</button>
+      <label class="demo-tools__check"><input type="checkbox" id="demo-fail"> Simulate a failed request</label>
+      <button type="button" class="demo-tools__btn" data-demo-off>Hide demo tools</button></div>`;
+    document.body.append(box);
+    $('[data-reset]', box).addEventListener('click', resetData);
+    const fail = $('#demo-fail', box);
+    syncFail = () => { fail.checked = ss.get(FAIL_KEY) === '1'; };
+    syncFail();
+    fail.addEventListener('change', () => ss.set(FAIL_KEY, fail.checked ? '1' : null));
+    $('[data-demo-off]', box).addEventListener('click', () => { ss.set(DEMO_KEY, null); ss.set(FAIL_KEY, null); box.remove(); });
+  }
 
   window.Aegis = {
     D, $, $$, reduceMotion, today, addDays, toISO, fromISO, shortDate, longDate, nightsBetween, sameDay, eur, plural, esc, params,

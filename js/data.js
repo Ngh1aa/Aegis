@@ -1,6 +1,6 @@
 /* Aegis seed data: the one place for rooms, extras, menus, treatments and availability.
- * Everything here is invented for the prototype (see docs/DESIGN-NOTES.md). Guest data never lives here:
- * bookings, tables and spa slots are kept in sessionStorage by js/site.js.
+ * Everything here is invented (see docs/DESIGN-NOTES.md). Guest data lives in sessionStorage (js/site.js);
+ * the one exception is seedBooking, which an empty store starts with so My stay has a booking to open.
  * Sold-out nights are relative to today so the calendar always has some to show. */
 window.AEGIS_DATA = (() => {
   'use strict';
@@ -132,9 +132,16 @@ window.AEGIS_DATA = (() => {
 
   const hotel = {
     phone: '+41 41 000 12 00',
-    email: 'stay@aegis-hotel.example',
+    email: 'stay@aegis-hotel.ch',
     checkIn: '3pm', checkOut: '11am',
   };
 
-  return { rooms, views, extras, taxPerGuestNight, maxNights, maxGuests, soldOutOffsets, roomTaken, menus, tableSlots, maxParty, treatments, hotel };
+  /* An upcoming stay that is already in the store on first visit. Dates are relative to today (see js/site.js). */
+  const seedBooking = {
+    ref: 'AEG-48213', first: 'Lena', surname: 'Hoffmann', email: 'lena.hoffmann@hoffmann-studio.ch', phone: '+41 79 555 01 23',
+    room: 'balcony', guests: 2, extras: ['dinner'], daysAhead: 12, nights: 3, bookedDaysAgo: 9,
+    arrival: '3–5pm', notes: 'A quiet room, please; it is our anniversary.',
+  };
+
+  return { seedBooking, rooms, views, extras, taxPerGuestNight, maxNights, maxGuests, soldOutOffsets, roomTaken, menus, tableSlots, maxParty, treatments, hotel };
 })();

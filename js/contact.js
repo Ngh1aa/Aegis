@@ -1,4 +1,4 @@
-/* Contact: message form with inline validation. Nothing is sent anywhere; the result says so. */
+/* Contact: message form with inline validation. There is no backend; the send step is the shared network stand-in. */
 (() => {
   'use strict';
   const A = window.Aegis;
@@ -23,6 +23,7 @@
     A.busy(btn, true);
     try {
       await A.send();
+      $('#m-note').textContent = `Reception will reply to ${f.email.value.trim()} within a day, usually much sooner. For anything urgent, call us on ${A.D.hotel.phone}.`;
       form.hidden = true; done.hidden = false; done.focus();
     } catch {
       $('#m-net').hidden = false; btn.focus();

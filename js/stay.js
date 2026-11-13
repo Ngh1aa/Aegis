@@ -1,5 +1,5 @@
 /* My stay: look up a booking by reference and surname, then view it, change its dates or cancel it.
- * Only bookings saved in this tab's sessionStorage can be found. */
+ * Bookings come from this tab's sessionStorage, which starts with one seeded booking (see js/data.js). */
 (() => {
   'use strict';
   const A = window.Aegis;
@@ -12,7 +12,20 @@
   A.clearOnInput(form);
 
   /* ---------- Views ---------- */
+  const hint = () => {
+    const r = A.store.recentBooking();
+    $('#l-hint').hidden = !r;
+    if (r) $('#l-hint-btn').textContent = `${r.ref} · ${r.surname}`;
+  };
+  $('#l-hint-btn').addEventListener('click', () => {
+    const r = A.store.recentBooking();
+    if (!r) return;
+    fRef.value = r.ref; fLast.value = r.surname;
+    A.setError(fRef, false); A.setError(fLast, false); $('#l-none').hidden = true;
+    form.querySelector('button[type=submit]').focus();
+  });
   const showLookup = () => {
+    hint();
     lookup.hidden = false; help.hidden = false; booking.hidden = true; side.hidden = true;
     history.replaceState(null, '', location.pathname);
   };
@@ -141,10 +154,10 @@
         x.history.push({ at: new Date().toISOString(), what: `Dates changed to ${inIso} – ${outIso}` });
       });
       render(A.store.findBooking(b.ref));
-      status('success', `Dates changed to ${shortDate(next.start)} to ${shortDate(next.end)}. New total ${eur(qq.total)}, paid at the hotel. This is a prototype, so no card was charged.`);
+      status('success', `Dates changed to ${shortDate(next.start)} to ${shortDate(next.end)}. New total ${eur(qq.total)}, paid at the hotel. We’ve emailed the updated details to ${b.email}.`);
       booking.focus();
     } catch {
-      status('danger', 'Couldn’t save because you’re offline. Your booking still has its old dates; try again when you’re back online.');
+      status('danger', 'Couldn’t save the new dates. Your booking still has its old dates; check your connection and try again.');
     } finally {
       A.busy(btn, false);
     }
@@ -171,10 +184,10 @@
         x.history.push({ at: new Date().toISOString(), what: 'Cancelled' });
       });
       render(A.store.findBooking(b.ref));
-      status('success', `Booking ${b.ref} is cancelled. This is a prototype, so no card was charged and no fee applies.`);
+      status('success', `Booking ${b.ref} is cancelled${late ? `. A cancellation fee of ${eur(r.price)} applies, settled with reception` : ' free of charge'}. We’ve emailed a confirmation to ${b.email}.`);
       booking.focus();
     } catch {
-      status('danger', 'Couldn’t cancel because you’re offline. Your booking is still confirmed; try again when you’re back online.');
+      status('danger', 'Couldn’t cancel. Your booking is still confirmed; check your connection and try again.');
     } finally {
       A.busy(btn, false);
     }

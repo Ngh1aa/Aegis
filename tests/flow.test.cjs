@@ -1,4 +1,4 @@
-/* Browser checks for the Aegis prototype (Playwright). Run:
+/* Browser checks for the Aegis site (Playwright). Run:
  *   NODE_PATH=<folder with playwright>/node_modules node tests/flow.test.cjs [shots-dir]
  * The script serves the repo itself over http://127.0.0.1 (sessionStorage needs a real origin to carry data
  * between pages). There is no server behind the site: bookings, tables and spa slots live in sessionStorage. */
@@ -266,7 +266,7 @@ const pickDay = async (p, host, d) => {
       await p.fill('#d-email', 'lena@example');
       await p.locator('#d-email').blur();
       assert.match(await p.textContent('#d-email-err'), /valid email/);
-      await p.fill('#d-email', 'lena@example.org');
+      await p.fill('#d-email', 'lena.hoffmann@hoffmann-studio.ch');
       assert.equal(await p.isVisible('#d-email-err'), false);
       await p.fill('#d-phone', '12');
       await p.click('#details button[type=submit]');
@@ -296,7 +296,9 @@ const pickDay = async (p, host, d) => {
       await p.waitForSelector('[data-step="done"]:not([hidden])', { timeout: 3000 });
       const sum = await p.textContent('#done-summary');
       ref = sum.match(/AEG-\d{5}/)[0];
-      assert.match(await p.textContent('[data-step="done"]'), /no reservation was made and no card was charged/);
+      assert.match(await p.textContent('#t-done'), /Your stay is confirmed/);
+      assert.match(await p.textContent('#done-note'), new RegExp(`Reference ${ref}\\. We’ve emailed the details to lena\\.hoffmann@hoffmann-studio\\.ch`));
+      assert.match(await p.textContent('#done-note'), /pay at the hotel/);
       await p.screenshot({ path: `${out}/${tag}-booking-done.png`, fullPage: w === 390 });
     });
     await step(`${tag} my stay: lookup rejects a wrong surname, then finds the booking`, async () => {
@@ -347,7 +349,8 @@ const pickDay = async (p, host, d) => {
       await p.waitForSelector('#t-done:not([hidden])', { timeout: 3000 });
       assert.match(await p.textContent('#t-summary'), /TBL-\d{5}/);
       assert.match(await p.textContent('#t-summary'), /3 people/);
-      assert.match(await p.textContent('#t-done'), /no table was reserved/);
+      assert.match(await p.textContent('#t-done'), /Your table is reserved/);
+      assert.match(await p.textContent('#t-note'), /emailed the details to lena\.hoffmann@hoffmann-studio\.ch/);
     });
     await step(`${tag} spa: choose a treatment, a day and a slot; it is added to My stay`, async () => {
       await go('spa.html');
@@ -376,7 +379,7 @@ const pickDay = async (p, host, d) => {
       await p.click('[data-dlg="ok"]');
       await p.waitForSelector('#b-again:not([hidden])', { timeout: 3000 });
       assert.match(await p.textContent('#b-badge'), /Cancelled/);
-      assert.match(await p.textContent('#b-status'), /cancelled.*no card was charged/);
+      assert.match(await p.textContent('#b-status'), /cancelled free of charge\. We’ve emailed a confirmation/);
       assert.equal(await p.isVisible('#b-actions'), false);
     });
     await step(`${tag} data survives page changes in the tab`, async () => {
@@ -392,11 +395,27 @@ const pickDay = async (p, host, d) => {
       await p.fill('#m-text', 'Can you hold a cot for us?');
       await p.click('#m-submit');
       await p.waitForSelector('#m-done:not([hidden])', { timeout: 3000 });
-      assert.match(await p.textContent('#m-done'), /not sent anywhere/);
+      assert.match(await p.textContent('#m-done'), /Reception will reply to lena\.hoffmann@hoffmann-studio\.ch/);
     });
-    await step(`${tag} reset: footer control asks, then clears everything`, async () => {
+    await step(`${tag} demo tools: hidden by default, ?demo=1 shows them, a failed request keeps the form`, async () => {
+      assert.equal(await p.locator('#demo-tools').count(), 0);
+      await go('contact.html?demo=1');
+      assert.equal(await p.isVisible('#demo-tools'), true);
+      await go('contact.html'); // the flag stays on for the tab
+      assert.equal(await p.isVisible('#demo-tools'), true);
+      await p.click('#demo-tools summary');
+      await p.check('#demo-fail');
+      await p.fill('#m-text', 'Is the sauna open on Sunday?');
+      await p.click('#m-submit');
+      await p.waitForSelector('#m-net:not([hidden])', { timeout: 3000 });
+      assert.equal(await p.inputValue('#m-text'), 'Is the sauna open on Sunday?');
+      assert.equal(await p.isChecked('#demo-fail'), false); // fails once only
+      await p.click('#m-submit');
+      await p.waitForSelector('#m-done:not([hidden])', { timeout: 3000 });
+    });
+    await step(`${tag} reset: demo tools control asks, then clears everything back to the starting booking`, async () => {
       await p.click('[data-reset]');
-      assert.match(await p.textContent('.dialog'), /Bookings\s*1/);
+      assert.match(await p.textContent('.dialog'), /Bookings\s*2/);
       await p.click('[data-dlg="cancel"]');
       assert.notEqual(await p.evaluate(() => sessionStorage.getItem('aegis-demo-v1')), null);
       await p.click('[data-reset]');
@@ -408,6 +427,35 @@ const pickDay = async (p, host, d) => {
       await p.fill('#l-ref', ref); await p.fill('#l-last', 'Hoffmann');
       await p.click('#lookup-form button[type=submit]');
       assert.equal(await p.isVisible('#l-none'), true);
+      assert.match(await p.textContent('#l-hint'), /Your recent booking: AEG-48213 · Hoffmann/);
+      await go('stay.html?demo=0');
+      assert.equal(await p.locator('#demo-tools').count(), 0);
+    });
+    await step(`${tag} first visit: no prototype wording on any page, no demo tools; My stay offers the recent booking`, async () => {
+      const fresh = await b.newContext({ viewport: { width: w, height: h }, colorScheme: scheme, reducedMotion: 'reduce' });
+      const q = await fresh.newPage();
+      const bad = /prototype|demo|sandbox|simulat|fictional|state lab|portfolio review|mock|example/i;
+      for (const u of ['index.html', 'rooms.html', 'room.html?id=tower', 'book.html', 'stay.html', 'dining.html', 'spa.html', 'contact.html', 'legal.html']) {
+        await q.goto(base + u, { waitUntil: 'load' });
+        const text = await q.evaluate(() => document.body.innerText + ' ' + document.title + ' ' + [...document.querySelectorAll('[aria-label],[title],[placeholder]')].map((e) => [e.getAttribute('aria-label'), e.getAttribute('title'), e.getAttribute('placeholder')].join(' ')).join(' '));
+        const m = text.match(bad);
+        assert.equal(m, null, `${u}: "${m && text.slice(Math.max(0, m.index - 40), m.index + 40)}"`);
+        assert.equal(await q.locator('#demo-tools').count(), 0, u);
+        assert.equal(await q.locator('.ftr__concept').count(), 1, u);
+        assert.match(await q.textContent('.ftr__concept'), /Concept product designed by Đỗ Anh Nghĩa\./);
+        assert.equal(await q.locator('footer a[href="legal.html#credits"]').count(), 1, u);
+      }
+      await q.goto(base + 'stay.html', { waitUntil: 'load' });
+      assert.match(await q.textContent('#l-hint'), /Your recent booking: AEG-48213 · Hoffmann/);
+      await q.click('#l-hint-btn');
+      assert.equal(await q.inputValue('#l-ref'), 'AEG-48213');
+      await q.click('#lookup-form button[type=submit]');
+      assert.equal(await q.isVisible('#booking'), true);
+      assert.match(await q.textContent('#b-summary'), /Lena Hoffmann/);
+      assert.match(await q.textContent('#a-ctx'), /In \d+ days/);
+      await q.goto(base + 'index.html?demo=1', { waitUntil: 'load' });
+      assert.equal(await q.isVisible('#demo-tools'), true);
+      await fresh.close();
     });
     await step(`${tag} every link and button on every page goes somewhere`, async () => {
       for (const u of ['index.html', 'rooms.html', 'room.html?id=tower', 'book.html', 'stay.html', 'dining.html', 'spa.html', 'contact.html', 'legal.html']) {

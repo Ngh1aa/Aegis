@@ -176,6 +176,10 @@
 /* ---------- My stay ---------- */
 .mystay { align-items: start; }
 .mystay__lookup { grid-column: 1 / 8; }
+.lookup-hint { margin: 0; color: var(--ds-text-secondary); font-size: 16px; }
+.lookup-hint[hidden] { display: none; }
+.lookup-hint__btn { min-height: 44px; padding: 0; border: 0; background: none; color: var(--ds-text-primary); font: inherit; font-weight: 600; text-decoration: underline; text-underline-offset: 4px; cursor: pointer; }
+.lookup-hint__btn:hover { color: var(--ds-text-brand); }
 .mystay__help { grid-column: 9 / 13; }
 .mystay__booking { grid-column: 1 / 9; display: flex; flex-direction: column; gap: var(--ds-space-600); }
 .mystay__booking:focus { outline: none; }

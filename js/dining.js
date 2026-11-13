@@ -74,6 +74,7 @@
       };
       A.store.update((st) => { st.tables.push(t); });
       A.fill($('#t-summary'), [['Reference', t.ref], ['Date', longDate(fromISO(t.date))], ['Time', t.time], ['Party', plural(t.party, 'person', 'people')], ['Name', t.name]]);
+      $('#t-note').textContent = `We’ve emailed the details to ${t.email}.${t.bookingRef ? ` The table is added to your stay, ${t.bookingRef}.` : ''}`;
       form.hidden = true; done.hidden = false;
       if (!A.reduceMotion) done.classList.add('step-enter');
       done.focus();

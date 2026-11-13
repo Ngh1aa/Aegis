@@ -87,6 +87,7 @@
       };
       A.store.update((st) => { st.spa.push(x); });
       A.fill($('#s-summary'), [['Reference', x.ref], ['Booked', x.name], ['Date', longDate(fromISO(x.date))], ['Time', x.time], ['People', plural(x.people, 'person', 'people')], ['Total', eur(x.total), 'total'], ...(x.bookingRef ? [['Stay', x.bookingRef]] : [])]);
+      $('#s-note').textContent = `We’ve emailed the details to ${x.email}.${x.bookingRef ? ' It is added to your stay and' : ' It is'} paid at the spa on the day.`;
       form.hidden = true; done.hidden = false;
       if (!A.reduceMotion) done.classList.add('step-enter');
       done.focus();

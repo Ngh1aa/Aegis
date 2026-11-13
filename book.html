@@ -199,7 +199,7 @@
           <p class="ds-field__error" id="terms-err" hidden><svg class="ds-icon ds-icon--sm" aria-hidden="true"><use href="#i-alert"/></svg><span>Accept the booking terms to continue.</span></p>
           <div class="ds-banner ds-banner--danger" role="alert" id="net-error" hidden>
             <svg class="ds-icon" aria-hidden="true"><use href="#i-alert"/></svg>
-            <div>Couldn’t send because you’re offline. Check your connection and try again; your details are still here.</div>
+            <div>Couldn’t send that. Check your connection and try again; your details are still here.</div>
           </div>
           <div class="form-actions between">
             <button class="ds-button ds-button--secondary ds-button--lg" type="button" data-back>Back</button>
@@ -210,11 +210,11 @@
         <!-- Confirmation -->
         <section class="step done" data-step="done" aria-labelledby="t-done" tabindex="-1" hidden>
           <svg class="ds-icon done__icon" aria-hidden="true"><use href="#i-check-circle"/></svg>
-          <h2 class="h2" id="t-done">Booking saved</h2>
+          <h2 class="h2" id="t-done">Your stay is confirmed</h2>
           <dl class="summary" id="done-summary"></dl>
           <div class="ds-banner note-banner" role="note">
             <svg class="ds-icon" aria-hidden="true"><use href="#i-info"/></svg>
-            <div>This is a prototype; no reservation was made and no card was charged. The booking is kept in this browser tab until you close it.</div>
+            <div id="done-note">We’ve emailed the details to you. Nothing is charged now; you pay at the hotel when you arrive.</div>
           </div>
           <div class="form-actions">
             <a class="ds-button ds-button--primary ds-button--lg" id="done-manage" href="stay.html">View my stay</a>
@@ -264,11 +264,10 @@
       <a href="index.html#morning">Morning</a>
     </div>
     <p class="ftr__credit">Photography by <a href="https://commons.wikimedia.org/wiki/User:Bybbisch94">Bybbisch94</a> via Wikimedia Commons, licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>; cropped and resized. <a class="nowrap" href="legal.html#credits">Full photo credits</a></p>
-    <p class="ftr__meta">© 2026 Aegis</p>
+    <p class="ftr__meta">© 2026 Aegis · <span class="ftr__concept">Concept product designed by Đỗ Anh Nghĩa.</span></p>
     <div class="ftr__legal">
       <a href="legal.html#privacy">Privacy policy</a>
       <a href="legal.html#terms">Booking terms</a>
-      <button class="ftr__reset" type="button" data-reset>Reset demo data</button>
     </div>
   </div>
 </footer>

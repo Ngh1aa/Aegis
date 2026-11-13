@@ -278,8 +278,15 @@ figure { margin: 0; }
 .rooms__all { grid-column: 1 / -1; margin: 0 0 0 calc(-1 * var(--ds-space-300)); }
 .ch-cta { margin-top: var(--ds-space-800); }
 .note-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--ds-space-400); }
-.ftr__reset { display: inline-flex; align-items: center; min-height: 44px; padding: 0; border: 0; background: none; color: var(--ds-text-primary); font: inherit; text-decoration: underline; text-underline-offset: 4px; cursor: pointer; }
-.ftr__reset:hover { color: var(--ds-text-brand); }
+.ftr__concept { white-space: nowrap; }
+
+/* Demo tools: only rendered with ?demo=1 (js/site.js) */
+.demo-tools { position: fixed; right: 16px; bottom: 16px; z-index: 70; max-width: calc(100vw - 32px); border: 1px solid var(--ds-border-subtle); border-radius: 4px; background: var(--ds-surface-raised); color: var(--ds-text-primary); font-size: 14px; box-shadow: 0 6px 24px rgba(0, 0, 0, .14); }
+.demo-tools summary { min-height: 40px; padding: 8px 14px; cursor: pointer; font-weight: 600; list-style-position: inside; }
+.demo-tools__body { display: grid; gap: 4px; padding: 0 14px 12px; }
+.demo-tools__btn { justify-self: start; min-height: 40px; padding: 0; border: 0; background: none; color: inherit; font: inherit; text-decoration: underline; text-underline-offset: 4px; cursor: pointer; }
+.demo-tools__btn:hover { color: var(--ds-text-brand); }
+.demo-tools__check { display: flex; align-items: center; gap: 8px; min-height: 40px; cursor: pointer; }
 
 /* ---------- Responsive ---------- */
 @media (max-width: 1023px) {

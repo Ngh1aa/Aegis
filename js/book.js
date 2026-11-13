@@ -208,6 +208,7 @@
       ['Dates', `${shortDate(fromISO(b.in))} to ${shortDate(fromISO(b.out))}`], ['Guests', plural(b.guests, 'adult', 'adults')],
       ['Extras', qq.lines.length ? qq.lines.map((l) => l.name).join(', ') : 'None'], ['Total', eur(b.total), 'total'], ['Payment', 'At the hotel'],
     ]);
+    $('#done-note').textContent = `Reference ${b.ref}. We’ve emailed the details to ${b.email}. Nothing is charged now; you pay at the hotel when you arrive.`;
     $('#done-manage').href = `stay.html?ref=${encodeURIComponent(b.ref)}`;
     show('done');
     $('#steps').hidden = true;

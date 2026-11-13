@@ -81,9 +81,9 @@ sang `book.html`.
 - **Dữ liệu:** seed ở `js/data.js`; dữ liệu người dùng chỉ ở `sessionStorage` (`aegis-demo-v1`). Đêm kín phòng: 24 và
   31/12 cộng các đêm cách hôm nay 4, 5, 16, 17, 30 ngày; Tower Suite bận đêm +21 đến +23, Family Room +25, +26.
   Giờ đặt bàn và spa "đã kín" tính theo ngày cho ổn định.
-- **Trung thực:** màn kết quả ghi "This is a prototype; no reservation was made and no card was charged" (và câu
-  tương tự cho bàn, spa, tin nhắn, đổi ngày, huỷ). Đây là yêu cầu của chủ repo, đứng trên dòng "không ghi chú bản
-  mẫu trên màn" của TASTE. Không có ô thẻ; thanh toán tại khách sạn.
+- **Trung thực:** (đã thay ở bản polish, xem mục "Bản polish như sản phẩm thật" bên dưới). Không còn ngoại lệ ghi chú
+  bản mẫu trên màn: dòng "không ghi chú bản mẫu trên màn" của TASTE áp dụng đầy đủ. Không có ô thẻ; thanh toán tại
+  khách sạn.
 - **Xác nhận:** xác nhận đặt phòng, đổi ngày, huỷ và Reset đều qua hộp có Hủy, rồi màn/banner kết quả.
 - **Card nổi bật:** mỗi màn tối đa một ("Your stay", "Nightly rate" hoặc "Arrival"); bo 4 px đồng nhất.
 - **Ảnh:** chỉ dùng lại ảnh trong `img/alpine`. Đã tìm ảnh phòng nghỉ CC0 trên Openverse và Wikimedia Commons nhưng
@@ -92,6 +92,24 @@ sang `book.html`.
 - **Soát:** `taste-check` 390/768/1280/1440 sáng tối + reflow 320 và axe: 0 lỗi trên cả 10 trạng thái trang; cảnh báo
   còn lại là đoạn kể chuyện ở trang chủ, đoạn văn ở legal và tiêu đề dài xuống dòng ở 390 px. `static-check` 0 lỗi.
   `tests/flow.test.cjs` 73/73 PASS (33 kiểm trang chủ ở 3 cấu hình như bản trước, 40 kiểm luồng ở 1440 sáng và 390 tối).
+
+## Bản polish như sản phẩm thật (nhánh `polish/real-product`, 13/11/2026)
+
+- **Bỏ ghi chú bản mẫu:** màn xác nhận viết như khách sạn thật: "Your stay is confirmed" + "Reference AEG-xxxxx.
+  We’ve emailed the details to …. Nothing is charged now; you pay at the hotel when you arrive." Bàn ăn, spa, tin
+  nhắn, đổi ngày, huỷ cũng vậy. Bỏ câu "chỉ tìm được booking trong tab này" ở My stay, câu "Aegis is a fictional
+  hotel" ở credit ảnh; email khách sạn `stay@aegis-hotel.ch` thay cho `.example`.
+- **Dòng trung thực duy nhất:** footer mọi trang có "© 2026 Aegis · Concept product designed by Đỗ Anh Nghĩa.";
+  link "Full photo credits" giữ nguyên.
+- **Công cụ demo ẩn:** "Reset demo data" rời footer; cùng "Simulate a failed request" (lỗi đúng một lần gửi tiếp
+  theo) nằm trong bảng nổi "Demo tools", chỉ hiện khi URL có `?demo=1` (giữ cho cả tab; `?demo=0` hoặc nút "Hide demo
+  tools" tắt). Thông báo lỗi gửi đổi từ "because you’re offline" sang "Check your connection and try again".
+- **Booking có sẵn:** store rỗng bắt đầu với `AEG-48213 · Hoffmann` (Lena Hoffmann, Balcony Room, 3 đêm, 2 người,
+  dinner; ngày tính từ hôm nay +12, né đêm kín phòng). My stay hiện "Your recent booking: AEG-48213 · Hoffmann"; bấm
+  vào để điền sẵn mã và họ. Reset đưa về đúng trạng thái này. Seed ở `js/data.js` (`seedBooking`).
+- **Kiểm:** `tests/flow.test.cjs` 77/77 PASS (thêm kiểm: khách lần đầu không thấy chữ prototype/demo/sandbox/simulat/
+  fictional/... trên 9 trang và không thấy Demo tools, `?demo=1` thì thấy; lỗi giả một lần giữ nguyên form; mở
+  booking có sẵn từ gợi ý).
 
 ## Còn lại
 
